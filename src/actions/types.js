@@ -1,8 +1,3 @@
-const createType = type => {
-    return ['REQUEST', 'SUCCESS', 'FAILURE'].reduce((acc, value) => {
-        acc[value] = `${type}_${value}`;
-        return acc;
-    }, {});
-};
+import { createRequestType } from './helper';
 
-export const SIGN_UP = createType('SIGN_UP');
+export const SIGN_UP = createRequestType('SIGN_UP');
