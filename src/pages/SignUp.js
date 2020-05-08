@@ -1,14 +1,12 @@
 import React from 'react';
 import { StyleSheet, StatusBar } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import Colors from '../../utils/Colors';
 import Button from '../components/Button';
 import { signUpAction } from '../actions/auth';
 
 const Root = () => {
-  const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const onPress = () => dispatch(signUpAction.REQUEST());

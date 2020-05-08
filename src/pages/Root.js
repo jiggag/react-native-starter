@@ -1,5 +1,7 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, StatusBar } from 'react-native';
+import {
+  SafeAreaView, StyleSheet, Text, StatusBar,
+} from 'react-native';
 import Colors from '../../utils/Colors';
 
 const Root = () => {
