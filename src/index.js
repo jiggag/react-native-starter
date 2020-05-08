@@ -1,17 +1,16 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Root from './Root';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import rootReducer from './reducers';
+import Router from './Router';
 
-const Stack = createStackNavigator();
+const store = createStore(rootReducer);
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode="none" initialRouteName="Root">
-        <Stack.Screen name="Root" component={Root} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <Router />
+    </Provider>
   );
 };
 
