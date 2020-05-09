@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, StatusBar } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
 import Colors from '../../utils/Colors';
@@ -13,7 +13,6 @@ const Root = () => {
 
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <Button paddingV-30 style={{ backgroundColor: '#ec2' }} onPress={onPress} text="SignUp" />
       </SafeAreaView>

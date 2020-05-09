@@ -1,17 +1,12 @@
 import React from 'react';
-import {
-  SafeAreaView, StyleSheet, Text, StatusBar,
-} from 'react-native';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
 import Colors from '../../utils/Colors';
 
 const Root = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView style={styles.container}>
-        <Text>starter</Text>
-      </SafeAreaView>
-    </>
+    <SafeAreaView style={styles.container}>
+      <Text>starter</Text>
+    </SafeAreaView>
   );
 };
 

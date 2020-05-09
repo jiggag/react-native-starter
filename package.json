@@ -58,13 +58,21 @@
     "stylelint-react-native": "^2.2.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./node_modules/react-native-ui-lib/jest-setup.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|@?react-navigation)"
+    ]
   },
   "lint-staged": {
     "*.{js,jsx}": [
       "prettier --write",
       "eslint --fix",
       "stylelint '**/*.js'",
+      "yarn test",
       "git add"
     ]
   },
