@@ -9,7 +9,11 @@
     "start": "react-native start",
     "test": "jest .",
     "lint": "eslint . --ext .js;stylelint 'src/**/*.js'",
-    "reinstall": "rm -rf node_modules;yarn install"
+    "reinstall": "rm -rf node_modules;yarn install",
+    "pod": "cd ios && pod install && cd ..",
+    "postinstall": "yarn pod",
+    "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleDebug && cd ..",
+    "open-android-build-folder": "open ./android/app/build/outputs/apk/"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.9.0",
