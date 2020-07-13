@@ -12,7 +12,7 @@
     "reinstall": "rm -rf node_modules;yarn install",
     "pod": "cd ios && pod install && cd ..",
     "postinstall": "yarn pod",
-    "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleDebug && cd ..",
+    "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleRelease && cd ..",
     "open-android-build-folder": "open ./android/app/build/outputs/apk/"
   },
   "dependencies": {
