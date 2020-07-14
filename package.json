@@ -8,7 +8,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest .",
-    "lint": "eslint . --ext .js;stylelint 'src/**/*.js'",
+    "lint": "eslint . --ext .js,.ts,.tsx;stylelint 'src/**/*.js' 'src/**/*.ts' 'src/**/*.tsx'",
     "reinstall": "rm -rf node_modules;yarn install",
     "pod": "cd ios && pod install && cd ..",
     "postinstall": "yarn pod",
@@ -83,8 +83,7 @@
     "*.{js,jsx,ts,tsx}": [
       "prettier --write",
       "eslint --fix",
-      "stylelint '**/*.js'",
-      "yarn test",
+      "stylelint '**/*.js' '**/*.ts' '**/*.tsx'",
       "git add"
     ]
   },

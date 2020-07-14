@@ -2,8 +2,8 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { useDispatch } from 'react-redux';
+import Button from '@components/Button';
 import Colors from '../../utils/Colors';
-import Button from '../components/Button';
 import { signUpAction } from '../actions/auth';
 
 const Root = () => {
