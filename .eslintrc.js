@@ -79,7 +79,7 @@ module.exports = {
     'react/no-unused-state': 'warn',
     'react/no-multi-comp': 'warn',
     'react/jsx-closing-bracket-location': 'warn',
-    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/no-string-refs': 'warn',
     'react/forbid-prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
