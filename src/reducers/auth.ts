@@ -5,8 +5,9 @@ const auth = (state = { token: '' }, action: { type: string; payload: any }) => 
     case SIGN_UP.SUCCESS:
     case SIGN_UP.REQUEST:
       return { token: 'test' };
+    default:
+      return state;
   }
-  return state;
 };
 
 export default auth;

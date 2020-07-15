@@ -1,8 +1,8 @@
 {
   "name": "react-native-starter",
   "version": "0.0.1",
+  "description": "React Native Starter",
   "private": true,
-  "description": "react-native, eslint, stylelint, husky, react-navigation, react-native-config, react-native-ui-lib",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
@@ -12,7 +12,8 @@
     "reinstall": "rm -rf node_modules;yarn install",
     "pod": "cd ios && pod install && cd ..",
     "postinstall": "yarn pod",
-    "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleRelease && cd ..",
+    "android:dev-build": "cd android && ENVFILE=.env ./gradlew assembleRelease && cd .. && yarn open-android-build-folder",
+    "android:live-build": "cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd .. && yarn open-android-build-folder",
     "open-android-build-folder": "open ./android/app/build/outputs/apk/"
   },
   "dependencies": {
