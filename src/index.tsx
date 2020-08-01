@@ -1,10 +1,21 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 import rootReducer from './reducers';
+import saga from './sagas';
 import Router from './Router';
 
-const store = createStore(rootReducer);
+const sagaMiddleware = createSagaMiddleware();
+const middlewares = [sagaMiddleware];
+
+if (__DEV__) {
+  const createDebugger = require('redux-flipper').default;
+  middlewares.push(createDebugger());
+}
+
+const store = createStore(rootReducer, applyMiddleware(...middlewares));
+sagaMiddleware.run(saga);
 
 const App = () => {
   return (

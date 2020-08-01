@@ -16,6 +16,7 @@
       "@components/*": ["src/components/*"],
       "@actions/*": ["src/actions/*"],
       "@reducers/*": ["src/actions/*"],
+      "@sagas/*": ["src/sagas/*"],
       "@utils/*": ["utils/*"],
     },
   },
