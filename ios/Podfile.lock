@@ -240,7 +240,7 @@ PODS:
     - React
   - react-native-config (1.0.0):
     - React
-  - react-native-flipper (0.51.0):
+  - react-native-flipper (0.45.0):
     - React
   - react-native-netinfo (5.8.0):
     - React
@@ -517,7 +517,7 @@ SPEC CHECKSUMS:
   React-jsinspector: fc661eff8edbfb7e22119382c13f33bcadde0f3c
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-config: 7db9b96479164dfd7b2be68eb9079e08279511c4
-  react-native-flipper: d51909c136225b3ad0bc14b6338e50f3e04e4982
+  react-native-flipper: bc9162dfd46c95bbe032e62e162ae936bfafd94b
   react-native-netinfo: b9650ab1b8b4362b3c455b1274e4bc48223cc957
   react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
   React-RCTActionSheet: aadd91a1d6cbfae50dd41f140004f816e9e47ade
