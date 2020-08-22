@@ -2,6 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore, persistReducer } from 'redux-persist';
+import AsyncStorage from '@react-native-community/async-storage';
 import rootReducer from './reducers';
 import saga from './sagas';
 import Router from './Router';
@@ -14,13 +17,23 @@ if (__DEV__) {
   middlewares.push(createDebugger());
 }
 
-const store = createStore(rootReducer, applyMiddleware(...middlewares));
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+  whitelist: [],
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+const store = createStore(persistedReducer, applyMiddleware(...middlewares));
+const persistor = persistStore(store);
 sagaMiddleware.run(saga);
 
 const App = () => {
   return (
     <Provider store={store}>
-      <Router />
+      <PersistGate loading={null} persistor={persistor}>
+        <Router />
+      </PersistGate>
     </Provider>
   );
 };
