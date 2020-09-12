@@ -12,8 +12,9 @@
     "reinstall": "rm -rf node_modules;yarn install",
     "pod": "cd ios && pod install && cd ..",
     "postinstall": "yarn pod",
-    "android:dev-build": "rnsemup && cd android && ENVFILE=.env ./gradlew assembleRelease && cd .. && yarn open-android-build-folder",
-    "android:live-build": "rnsemup && cd android && ENVFILE=.env.production ./gradlew assembleRelease && cd .. && yarn open-android-build-folder",
+    "android:dev-build": "rnsemup && cd android && fastlane build && cd .. && yarn open-android-build-folder",
+    "android:live-build": "rnsemup && cd android && fastlane build --env production && cd .. && yarn open-android-build-folder",
+    "android:live-bundle": "rnsemup && cd android && fastlane bundle --env production && cd .. && yarn open-android-build-folder",
     "open-android-build-folder": "open ./android/app/build/outputs/apk/"
   },
   "dependencies": {
