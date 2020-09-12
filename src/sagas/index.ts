@@ -1,7 +1,8 @@
 import { all, fork } from 'redux-saga/effects';
 import auth from './auth';
+import root from './root';
 
-const sagas = [...auth];
+const sagas = [...auth, ...root];
 
 export default function* rootSagas() {
   try {
