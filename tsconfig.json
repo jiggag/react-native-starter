@@ -17,13 +17,8 @@
       "@actions/*": ["src/actions/*"],
       "@reducers/*": ["src/actions/*"],
       "@sagas/*": ["src/sagas/*"],
-      "@utils/*": ["utils/*"],
-    },
+      "@utils/*": ["utils/*"]
+    }
   },
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "metro.config.js",
-    "jest.config.js"
-  ]
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
 }

@@ -1,4 +1,5 @@
 # react-native-starter
+
 ```
 react-native
 typescript
@@ -9,6 +10,7 @@ eslint
 ```
 
 #### 앱 이름 변경
+
 ```
 yarn global add react-native-rename
 
