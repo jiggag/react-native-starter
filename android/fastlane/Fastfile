@@ -18,11 +18,11 @@ default_platform(:android)
 platform :android do
   desc "Android Bundle"
   lane :build do
-    gradle(task: "clean assembleRelease")
+    gradle(task: "assembleRelease")
   end
 
   desc "Android Build"
   lane :bundle do
-    gradle(task: "clean bundleRelease")
+    gradle(task: "bundleRelease")
   end
 end
