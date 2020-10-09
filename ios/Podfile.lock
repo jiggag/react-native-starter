@@ -308,7 +308,7 @@ PODS:
     - React-jsi (= 0.63.0)
   - ReactNativeUiLib (2.0.2):
     - React
-  - RNCAsyncStorage (1.10.0):
+  - RNCAsyncStorage (1.12.0):
     - React
   - RNCMaskedView (0.1.10):
     - React
@@ -531,7 +531,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: 77ab1cf4a5eb854b88ad5ed3e9d8509ed124525e
   ReactCommon: f63556ee9e41e9802257228237e5e660451a03cf
   ReactNativeUiLib: 9883f80a22b855d4a866ceee433d1e24b1014a2a
-  RNCAsyncStorage: 6d99641f8e6f15d169d695d8ef184bf187903f11
+  RNCAsyncStorage: 2a692bcb9b69b76a2f1a95f33db057129700af64
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNDateTimePicker: 4bd49e09f91ca73d69119a9e1173b0d43b82f5e5
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
