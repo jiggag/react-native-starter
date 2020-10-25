@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text } from 'react-native-ui-lib';
+import Text from 'react-native-ui-lib/text';
+import TouchableOpacity from 'react-native-ui-lib/touchableOpacity';
 import { ViewStyle, StyleProp } from 'react-native';
 
 interface ButtonProps {

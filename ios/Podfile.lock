@@ -238,14 +238,16 @@ PODS:
   - React-jsinspector (0.63.3)
   - react-native-blur (0.8.0):
     - React
-  - react-native-config (1.0.0):
+  - react-native-config (1.3.3):
+    - react-native-config/App (= 1.3.3)
+  - react-native-config/App (1.3.3):
     - React
-  - react-native-flipper (0.45.0):
+  - react-native-flipper (0.63.0):
     - React
-  - react-native-netinfo (5.8.0):
-    - React
-  - react-native-safe-area-context (0.7.3):
-    - React
+  - react-native-netinfo (5.9.7):
+    - React-Core
+  - react-native-safe-area-context (3.1.8):
+    - React-Core
   - React-RCTActionSheet (0.63.3):
     - React-Core/RCTActionSheetHeaders (= 0.63.3)
   - React-RCTAnimation (0.63.3):
@@ -306,26 +308,20 @@ PODS:
     - React-Core (= 0.63.3)
     - React-cxxreact (= 0.63.3)
     - React-jsi (= 0.63.3)
-  - ReactNativeUiLib (2.0.2):
+  - ReactNativeUiLib (3.0.4):
     - React
-  - RNCAsyncStorage (1.12.0):
-    - React
+  - RNCAsyncStorage (1.12.1):
+    - React-Core
   - RNCMaskedView (0.1.10):
     - React
-  - RNDateTimePicker (2.3.2):
+  - RNDateTimePicker (3.0.4):
+    - React-Core
+  - RNGestureHandler (1.8.0):
     - React
-  - RNGestureHandler (1.6.1):
+  - RNReanimated (1.13.1):
     - React
-  - RNReanimated (1.8.0):
+  - RNScreens (2.11.0):
     - React
-  - RNScreens (2.7.0):
-    - React
-  - RNSentry (1.3.7):
-    - React
-    - Sentry (~> 4.4.0)
-  - Sentry (4.4.3):
-    - Sentry/Core (= 4.4.3)
-  - Sentry/Core (4.4.3)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -389,7 +385,6 @@ DEPENDENCIES:
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
-  - "RNSentry (from `../node_modules/@sentry/react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -405,7 +400,6 @@ SPEC REPOS:
     - Flipper-RSocket
     - FlipperKit
     - OpenSSL-Universal
-    - Sentry
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -483,8 +477,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
-  RNSentry:
-    :path: "../node_modules/@sentry/react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -516,10 +508,10 @@ SPEC CHECKSUMS:
   React-jsiexecutor: b56c03e61c0dd5f5801255f2160a815f4a53d451
   React-jsinspector: 8e68ffbfe23880d3ee9bafa8be2777f60b25cbe2
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
-  react-native-config: 7db9b96479164dfd7b2be68eb9079e08279511c4
-  react-native-flipper: bc9162dfd46c95bbe032e62e162ae936bfafd94b
-  react-native-netinfo: b9650ab1b8b4362b3c455b1274e4bc48223cc957
-  react-native-safe-area-context: e200d4433aba6b7e60b52da5f37af11f7a0b0392
+  react-native-config: 9a061347e0136fdb32d43a34d60999297d672361
+  react-native-flipper: c3189ce7e10a9fb213269cce0f860bec5ce7249b
+  react-native-netinfo: 250dc0ca126512f618a8a2ca6a936577e1f66586
+  react-native-safe-area-context: 79fea126c6830c85f65947c223a5e3058a666937
   React-RCTActionSheet: 53ea72699698b0b47a6421cb1c8b4ab215a774aa
   React-RCTAnimation: 1befece0b5183c22ae01b966f5583f42e69a83c2
   React-RCTBlob: 0b284339cbe4b15705a05e2313a51c6d8b51fa40
@@ -530,15 +522,13 @@ SPEC CHECKSUMS:
   React-RCTText: 65a6de06a7389098ce24340d1d3556015c38f746
   React-RCTVibration: 8e9fb25724a0805107fc1acc9075e26f814df454
   ReactCommon: 4167844018c9ed375cc01a843e9ee564399e53c3
-  ReactNativeUiLib: 9883f80a22b855d4a866ceee433d1e24b1014a2a
-  RNCAsyncStorage: 2a692bcb9b69b76a2f1a95f33db057129700af64
+  ReactNativeUiLib: cde7263a7d308b60161cd286f95c9433e79f2f7d
+  RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNDateTimePicker: 4bd49e09f91ca73d69119a9e1173b0d43b82f5e5
-  RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
-  RNReanimated: 955cf4068714003d2f1a6e2bae3fb1118f359aff
-  RNScreens: cf198f915f8a2bf163de94ca9f5bfc8d326c3706
-  RNSentry: 370623102247ebea20191b5fb549ecc7a275b324
-  Sentry: 14bdd673870e8cf64932b149fad5bbbf39a9b390
+  RNDateTimePicker: 3d1931e387248cb8f1d1d33740d4a1a82dfe622a
+  RNGestureHandler: 7a5833d0f788dbd107fbb913e09aa0c1ff333c39
+  RNReanimated: dd8c286ab5dd4ba36d3a7fef8bff7e08711b5476
+  RNScreens: 0e91da98ab26d5d04c7b59a9b6bd694124caf88c
   Yoga: 7d13633d129fd179e01b8953d38d47be90db185a
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
