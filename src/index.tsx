@@ -5,9 +5,12 @@ import createSagaMiddleware from 'redux-saga';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore, persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
+import Bugsnag from '@bugsnag/react-native';
 import rootReducer from './reducers';
 import saga from './sagas';
 import Router from './Router';
+
+Bugsnag.start();
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [sagaMiddleware];
