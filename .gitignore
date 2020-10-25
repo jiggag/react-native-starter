@@ -72,10 +72,11 @@ android/google-key.json
 
 coverage
 .jest
-android/sentry.properties
-ios/sentry.properties
 android/.project
 android/.settings/org.eclipse.buildship.core.prefs
 android/app/.classpath
 android/app/.project
 android/app/.settings/org.eclipse.buildship.core.prefs
+
+# react-native-config codegen
+ios/tmp.xcconfig
