@@ -97,6 +97,7 @@ module.exports = {
     'react/no-string-refs': 'warn',
     'react/forbid-prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react-redux/useSelector-prefer-selectors': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'error',
     '@typescript-eslint/no-var-requires': 'off',

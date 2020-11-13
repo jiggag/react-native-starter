@@ -19,7 +19,7 @@ module.exports = {
           '@actions': './src/actions',
           '@reducers': './src/reducers',
           '@sagas': './src/sagas',
-          '@utils': './utils',
+          '@utils': './src/utils',
         },
       },
     ],

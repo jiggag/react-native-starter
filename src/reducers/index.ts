@@ -3,7 +3,7 @@ import { combineReducers } from 'redux';
 import auth, { AuthReducer } from './auth';
 import root, { RootReducer } from './root';
 
-interface ReducerProps {
+export interface ReducerProps {
   root: RootReducer;
   auth: AuthReducer;
 }
