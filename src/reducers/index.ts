@@ -1,11 +1,16 @@
-import { combineReducers } from 'redux';
 import { enableES5 } from 'immer';
-import root from './root';
-import auth from './auth';
+import { combineReducers } from 'redux';
+import auth, { AuthReducer } from './auth';
+import root, { RootReducer } from './root';
+
+interface ReducerProps {
+  root: RootReducer;
+  auth: AuthReducer;
+}
 
 enableES5();
 
-export default combineReducers({
+export default combineReducers<ReducerProps>({
   root,
   auth,
 });

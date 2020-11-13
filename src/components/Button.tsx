@@ -1,19 +1,18 @@
 import React from 'react';
+import { ViewStyle, StyleProp, TouchableWithoutFeedback } from 'react-native';
 import Text from 'react-native-ui-lib/text';
-import TouchableOpacity from 'react-native-ui-lib/touchableOpacity';
-import { ViewStyle, StyleProp } from 'react-native';
 
 interface ButtonProps {
-  onPress: () => {};
+  onPress: () => void;
   text: string;
   style: StyleProp<ViewStyle>;
 }
 
 const Button = ({ onPress, text, ...rest }: ButtonProps) => {
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={1} {...rest}>
+    <TouchableWithoutFeedback onPress={onPress} {...rest}>
       <Text>{text}</Text>
-    </TouchableOpacity>
+    </TouchableWithoutFeedback>
   );
 };
 

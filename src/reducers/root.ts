@@ -1,11 +1,15 @@
 import produce from 'immer';
 import { SPLASH } from '@actions/types';
 
+export interface RootReducer {
+  isAppSplash: boolean;
+}
+
 const initialState = {
   isAppSplash: true,
 };
 
-const root = (state = initialState, action: { type: string; payload: any }) => {
+const root = (state: RootReducer = initialState, action: { type: string; payload: never }) => {
   return produce(state, (draft) => {
     switch (action.type) {
       case SPLASH.SUCCESS:

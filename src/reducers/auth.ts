@@ -1,11 +1,15 @@
 import produce from 'immer';
 import { SIGN_UP } from '@actions/types';
 
+export interface AuthReducer {
+  token: string;
+}
+
 const initialState = {
   token: '',
 };
 
-const auth = (state = initialState, action: { type: string; payload: any }) => {
+const auth = (state: AuthReducer = initialState, action: { type: string; payload: never }) => {
   return produce(state, (draft) => {
     switch (action.type) {
       case SIGN_UP.SUCCESS:

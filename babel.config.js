@@ -1,5 +1,13 @@
 module.exports = {
   presets: ['module:metro-react-native-babel-preset'],
+  env: {
+    development: {
+      plugins: [['babel-plugin-styled-components', { displayName: true }]],
+    },
+    production: {
+      plugins: ['transform-remove-console'],
+    },
+  },
   plugins: [
     [
       'module-resolver',

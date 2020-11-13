@@ -1,14 +1,14 @@
 import React from 'react';
+import Bugsnag from '@bugsnag/react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore, persistReducer } from 'redux-persist';
-import AsyncStorage from '@react-native-community/async-storage';
-import Bugsnag from '@bugsnag/react-native';
-import rootReducer from './reducers';
-import saga from './sagas';
+import { PersistGate } from 'redux-persist/integration/react';
+import createSagaMiddleware from 'redux-saga';
+import reducer from './reducers';
 import Router from './Router';
+import saga from './sagas';
 
 Bugsnag.start();
 
@@ -25,16 +25,16 @@ const persistConfig = {
   storage: AsyncStorage,
   whitelist: [],
 };
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = createStore(persistedReducer, applyMiddleware(...middlewares));
-const persistor = persistStore(store);
+const persist = persistStore(store);
 sagaMiddleware.run(saga);
 
 const App = () => {
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate loading={null} persistor={persist}>
         <Router />
       </PersistGate>
     </Provider>
