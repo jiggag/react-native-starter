@@ -27,7 +27,7 @@
     "@react-native-community/netinfo": "^5.9.7",
     "@react-navigation/native": "^5.8.0",
     "@react-navigation/stack": "^5.10.0",
-    "apisauce": "^1.1.2",
+    "apisauce": "^2.0.0",
     "immer": "^7.0.14",
     "react": "16.13.1",
     "react-native": "0.63.3",
