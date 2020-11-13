@@ -3,7 +3,7 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "isolatedModules": true,
+    "isolatedModules": false,
     "jsx": "react",
     "lib": ["es6"],
     "moduleResolution": "node",
@@ -17,7 +17,8 @@
       "@actions/*": ["src/actions/*"],
       "@reducers/*": ["src/reducers/*"],
       "@sagas/*": ["src/sagas/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@services/*": ["src/services/*"]
     }
   },
   "exclude": ["node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]

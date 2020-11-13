@@ -1,21 +1,32 @@
+import _reduce from 'lodash/reduce';
+
 export const REQUEST = 'REQUEST';
 export const SUCCESS = 'SUCCESS';
 export const FAILURE = 'FAILURE';
 
-const action = (type: string, payload = {}) => {
+export type Payload<T = Record<string, string | number>> = T;
+export interface Action<T> {
+  type: string;
+  payload: T;
+}
+const action = (type: string, payload: Payload = {}): Action<Payload> => {
   return { type, payload };
 };
 
-export const createAction = (type: { [key: string]: string }) => {
+export const createAction = (type: Record<string, string>) => {
   return {
-    REQUEST: (param?: any) => action(type[REQUEST], param),
-    SUCCESS: (data?: any) => action(type[SUCCESS], data),
-    FAILURE: (error?: any) => action(type[FAILURE], error),
+    REQUEST: (param?: Payload) => action(type[REQUEST], param),
+    SUCCESS: (data?: Payload) => action(type[SUCCESS], data),
+    FAILURE: (error?: Payload) => action(type[FAILURE], error),
   };
 };
 
-export const createRequestType = (req: string): { [key: string]: string } => {
-  return [REQUEST, SUCCESS, FAILURE].reduce((acc, type) => {
-    return { ...acc, [type]: `${req}_${type}` };
-  }, {});
+export const createRequestType = (req: string): Record<string, string> => {
+  return _reduce(
+    [REQUEST, SUCCESS, FAILURE],
+    (acc: Record<string, string>, type: string) => {
+      return { ...acc, [type]: `${req}_${type}` };
+    },
+    {},
+  );
 };

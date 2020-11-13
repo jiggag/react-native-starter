@@ -32,11 +32,11 @@ api.addAsyncResponseTransform((response) => async () => {
 api.addMonitor((response) => {
   if (__DEV__) {
     console.log(JSON.stringify(response));
-    console.log(response.config.data);
+    console.log(response.config?.data);
   }
 });
 
-const ApiService = async (URL, method, bodyParams) => {
+const ApiService = async (URL: string, method: string, bodyParams: Record<string, unknown>) => {
   let response = null;
   switch (method) {
     case HEADERS_METHOD.get:
