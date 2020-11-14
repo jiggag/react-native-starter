@@ -5,13 +5,13 @@ import Button from '@components/Button';
 import styles from './styles';
 
 interface SignUpProps {
-  onPress: () => {};
+  onPress: () => void;
 }
 const Presenter = ({ onPress }: SignUpProps) => {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
-        <Button paddingV-30 style={styles.button} onPress={onPress} text="SignUp" />
+        <Button btnStyle={styles.button} textStyle={styles.text} onPress={onPress} text="SignUp" />
       </SafeAreaView>
     </SafeAreaProvider>
   );
