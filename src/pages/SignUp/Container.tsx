@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { splashAction } from '@actions/root';
 import { signUpAction } from '@actions/auth';
+import { splashAction } from '@actions/root';
+import { ContainerWrapper } from '@components/Wrapper';
 import Presenter from './Presenter';
 
 const Container = () => {
@@ -13,7 +14,11 @@ const Container = () => {
     dispatch(splashAction.REQUEST());
   }, [dispatch]);
 
-  return <Presenter onPress={onPress} />;
+  return (
+    <ContainerWrapper>
+      <Presenter onPress={onPress} />
+    </ContainerWrapper>
+  );
 };
 
 export default Container;

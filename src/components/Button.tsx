@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import Text from 'react-native-ui-lib/text';
 import View from 'react-native-ui-lib/view';
-import Colors from '@utils/Colors';
+import colors from '@utils/Colors';
 import { fontFamily, fontSize, fontWeight } from '@utils/Fonts';
 
 interface ButtonProps {
@@ -35,13 +35,13 @@ export default Button;
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: Colors.white,
+    backgroundColor: colors.white,
     justifyContent: 'center',
     paddingBottom: 17,
     paddingTop: 18,
   },
   text: {
-    color: Colors.white,
+    color: colors.white,
     fontFamily: fontFamily.medium,
     fontSize: fontSize.medium,
     fontWeight: fontWeight.normal,

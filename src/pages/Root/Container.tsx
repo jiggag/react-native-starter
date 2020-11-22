@@ -1,8 +1,13 @@
 import React from 'react';
+import { ContainerWrapper } from '@components/Wrapper';
 import Presenter from './Presenter';
 
 const Container = () => {
-  return <Presenter />;
+  return (
+    <ContainerWrapper>
+      <Presenter />
+    </ContainerWrapper>
+  );
 };
 
 export default Container;

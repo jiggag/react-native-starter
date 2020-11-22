@@ -1,12 +1,12 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
-import styles from './styles';
+import { Text } from 'react-native';
+import Wrapper from '@components/Wrapper';
 
 const Presenter = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <Wrapper>
       <Text>starter</Text>
-    </SafeAreaView>
+    </Wrapper>
   );
 };
 

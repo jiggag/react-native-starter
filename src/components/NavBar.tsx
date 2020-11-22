@@ -1,23 +1,54 @@
 import React from 'react';
-import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Image } from 'react-native';
 import Text from 'react-native-ui-lib/text';
 import View from 'react-native-ui-lib/view';
+import images from '@utils/Images';
+
+interface Button {
+  onPress: () => void;
+}
+
+const NavBack = ({ onPress }: Button) => {
+  return (
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View padding-8>
+        <Image source={images.arrowLeft} />
+      </View>
+    </TouchableWithoutFeedback>
+  );
+};
+
+const NavClose = ({ onPress }: Button) => {
+  return (
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View padding-6>
+        <Image source={images.close} />
+      </View>
+    </TouchableWithoutFeedback>
+  );
+};
+
+const IS_CLOSE = {
+  LEFT: 'LEFT',
+  RIGHT: 'RIGHT',
+} as const;
 
 interface NavBar {
   onPressLeft?: () => void;
   onPressRight?: () => void;
   text?: string;
+  isClose?: 'LEFT' | 'RIGHT';
 }
 
-const NavBar = ({ onPressRight, text, onPressLeft }: NavBar) => {
+const NavBar = ({
+  onPressRight, text, onPressLeft, isClose = IS_CLOSE.RIGHT,
+}: NavBar) => {
   return (
     <View row marginB-20 style={styles.nav}>
       <View flex>
         {!!onPressLeft && (
           <View flex center>
-            <TouchableWithoutFeedback onPress={onPressLeft}>
-              <Text>왼쪽</Text>
-            </TouchableWithoutFeedback>
+            {isClose === IS_CLOSE.LEFT ? <NavClose onPress={onPressLeft} /> : <NavBack onPress={onPressLeft} />}
           </View>
         )}
       </View>
@@ -27,9 +58,7 @@ const NavBar = ({ onPressRight, text, onPressLeft }: NavBar) => {
       <View flex>
         {!!onPressRight && (
           <View flex center>
-            <TouchableWithoutFeedback onPress={onPressRight}>
-              <Text>오른쪽</Text>
-            </TouchableWithoutFeedback>
+            <NavClose onPress={onPressRight} />
           </View>
         )}
       </View>
@@ -41,7 +70,6 @@ export default NavBar;
 
 const styles = StyleSheet.create({
   nav: {
-    borderWidth: 1,
     height: 50,
   },
 });
