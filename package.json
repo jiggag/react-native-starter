@@ -7,7 +7,10 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest .",
+    "test": "jest \"__tests__/.*\\.test\\.(ts|js)\"",
+    "test:coverage": "jest --coverage \"__tests__/.*\\.test\\.(ts|js|tsx)\"",
+    "test:watch": "yarn test --verbose --watchAll",
+    "test:update": "yarn test --verbose --coverage --updateSnapshot",
     "lint": "eslint . --ext .js,.ts,.tsx;stylelint 'src/**/*.js' 'src/**/*.ts' 'src/**/*.tsx'",
     "reinstall": "rm -rf node_modules && yarn install",
     "pod": "cd ios && pod install && cd ..",
@@ -96,14 +99,7 @@
     "typescript": "^3.9.6"
   },
   "jest": {
-    "preset": "react-native",
-    "setupFiles": [
-      "./node_modules/react-native-gesture-handler/jestSetup.js",
-      "./node_modules/react-native-ui-lib/jest-setup.js"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|@?react-navigation)"
-    ]
+    "preset": "react-native"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
