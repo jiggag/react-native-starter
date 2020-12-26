@@ -6,6 +6,8 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "android:release": "react-native run-android --variant=release",
+    "ios:release": "react-native run-ios --scheme \"RNStarter (Production)\"",
     "start": "react-native start",
     "test": "jest \"__tests__/.*\\.test\\.(ts|js)\"",
     "test:coverage": "jest --coverage \"__tests__/.*\\.test\\.(ts|js|tsx)\"",
@@ -36,7 +38,7 @@
     "lodash": "^4.17.20",
     "react": "16.13.1",
     "react-native": "0.63.3",
-    "react-native-config": "^1.3.3",
+    "react-native-config": "^1.4.1",
     "react-native-flipper": "^0.63.0",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-modal": "^11.5.6",
