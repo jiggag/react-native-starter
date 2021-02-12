@@ -1,23 +1,35 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
-#
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
+fastlane_require 'dotenv'
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
+# apple_id: email
+apple_id = ""
 
 default_platform(:ios)
 
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    Dotenv.overload '../../.env'
+    build_app(workspace: "RNStarter.xcworkspace", scheme: "RNStarter")
+    upload_to_testflight(
+      username: apple_id,
+      skip_waiting_for_build_processing: true
+    )
+    upload_symbols_to_bugsnag(
+      api_key: ENV['BUGSNAG_API_KEY']
+    )
   end
+
+  desc "Push a new release build to TestFlight"
+  lane :release do
+    Dotenv.overload '../../.env.production'
+    build_app(workspace: "RNStarter.xcworkspace", scheme: "RNStarter (Production)")
+    upload_to_testflight(
+      username: apple_id,
+      skip_waiting_for_build_processing: true
+    )
+    upload_symbols_to_bugsnag(
+      api_key: ENV['BUGSNAG_API_KEY']
+    )
+  end
+
 end

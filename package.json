@@ -20,6 +20,8 @@
     "android:dev-build": "rnsemup && cd android && fastlane build && cd .. && yarn process-kill-java && yarn open-android-build-folder",
     "android:live-build": "rnsemup && cd android && fastlane build --env production && yarn process-kill-java && cd .. && yarn open-android-build-folder",
     "android:live-bundle": "rnsemup && cd android && fastlane bundle --env production && yarn process-kill-java && cd .. && yarn open-android-build-folder",
+    "ios:dev-build": "rnsemup && cd ios && fastlane beta && cd ..",
+    "ios:live-build": "rnsemup && cd ios && fastlane release && cd ..",
     "open-android-build-folder": "open ./android/app/build/outputs/apk/",
     "process-kill-java": "pkill -9 -f java",
     "image:generator": "node scripts/imageGenerator.js"
