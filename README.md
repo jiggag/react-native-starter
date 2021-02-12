@@ -7,12 +7,34 @@ react-navigation
 redux
 stylelint
 eslint
+fastlane
+bugsnag
+codepush
 ```
 
 #### 앱 이름 변경
 
-```
+```shell
 yarn global add react-native-rename
 
 react-native-rename "App Name" -b com.jiggag.appname
+```
+
+#### Bugsnag 설정
+#### fastlane 설정
+```shell
+sudo gem install fastlane -NV
+```
+
+#### codepush 설정
+```shell
+yarn global add appcenter-cli
+yarn add react-native-code-push
+```
+
+```shell
+# codepush app key
+appcenter codepush deployment list -a <ownerName>/<appName> -k
+
+# codepush config secret
 ```
