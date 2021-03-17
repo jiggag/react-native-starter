@@ -146,6 +146,7 @@ android {
         versionCode 1
         versionName "0.0.1"
         multiDexEnabled true
+        manifestPlaceholders = [bugsnagApiKey: project.env.get("BUGSNAG_API_KEY")]
     }
     splits {
         abi {
