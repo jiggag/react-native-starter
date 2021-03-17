@@ -34,7 +34,10 @@ yarn add react-native-code-push
 
 ```shell
 # codepush app key
-appcenter codepush deployment list -a <ownerName>/<appName> -k
+appcenter codepush deployment list -a jiggag/equal-ios -k
+>>>> .env, .env.production에 설정
 
 # codepush config secret
+ios/RNStarter/Appcenter-Config.plist
+>>>> codepush 프로젝트에서 가져온 AppSecret 설정
 ```
