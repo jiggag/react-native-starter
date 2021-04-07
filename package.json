@@ -1,6 +1,7 @@
 {
   "name": "react-native-starter",
   "version": "0.0.2",
+  "codeBundleId": "0.0.2-1",
   "description": "React Native Starter",
   "private": true,
   "scripts": {
@@ -17,14 +18,21 @@
     "reinstall": "rm -rf node_modules && yarn install",
     "pod": "cd ios && pod install && cd ..",
     "postinstall": "yarn pod",
-    "android:dev-build": "rnsemup && cd android && fastlane build && cd .. && yarn process-kill-java && yarn open-android-build-folder",
-    "android:live-build": "rnsemup && cd android && fastlane build --env production && yarn process-kill-java && cd .. && yarn open-android-build-folder",
-    "android:live-bundle": "rnsemup && cd android && fastlane bundle --env production && yarn process-kill-java && cd .. && yarn open-android-build-folder",
-    "ios:dev-build": "rnsemup && cd ios && fastlane beta && cd ..",
-    "ios:live-build": "rnsemup && cd ios && fastlane release && cd ..",
+    "android:dev-build": "rnsemup && cd android && fastlane build && cd .. && yarn process-kill-java && yarn open-android-build-folder && yarn android:dev-code-push",
+    "android:live-build": "rnsemup && cd android && fastlane build --env production && yarn process-kill-java && cd .. && yarn open-android-build-folder && yarn android:live-code-push",
+    "ios:dev-build": "rnsemup && cd ios && fastlane beta && cd .. && yarn ios:dev-code-push",
+    "ios:live-build": "rnsemup && cd ios && fastlane release && cd .. && yarn ios:live-code-push",
+    "all:live-build": "rnsemup && yarn reinstall && yarn android:live-build && yarn ios:live-build",
     "open-android-build-folder": "open ./android/app/build/outputs/apk/",
     "process-kill-java": "pkill -9 -f java",
-    "image:generator": "node scripts/imageGenerator.js"
+    "image:generator": "node scripts/imageGenerator.js",
+    "android:dev-code-push": "yarn update-codepush-bundle-id && appcenter codepush release-react -a jiggag/equal-android -d Staging --output-dir build/android && yarn android:bugsnag-sourcemap",
+    "android:live-code-push": "yarn update-codepush-bundle-id && appcenter codepush release-react -a jiggag/equal-android -d Production --output-dir build/android && yarn android:bugsnag-sourcemap",
+    "ios:dev-code-push": "yarn update-codepush-bundle-id && appcenter codepush release-react -a jiggag/equal-ios -d Staging --output-dir build/ios && yarn ios:bugsnag-sourcemap",
+    "ios:live-code-push": "yarn update-codepush-bundle-id && appcenter codepush release-react -a jiggag/equal-ios -d Production --output-dir build/ios && yarn ios:bugsnag-sourcemap",
+    "android:bugsnag-sourcemap": "scripts/bugsnag-sourcemap-android.sh",
+    "ios:bugsnag-sourcemap": "scripts/bugsnag-sourcemap-ios.sh",
+    "update-codepush-bundle-id": "node ./scripts/updateCodePushBundleId.js"
   },
   "dependencies": {
     "@bugsnag/react-native": "^7.5.1",
