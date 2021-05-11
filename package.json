@@ -48,7 +48,7 @@
     "appcenter-analytics": "^4.0.2",
     "appcenter-crashes": "^4.0.2",
     "immer": "^8.0.1",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "react": "17.0.1",
     "react-native": "0.64.0",
     "react-native-code-push": "^7.0.0",
