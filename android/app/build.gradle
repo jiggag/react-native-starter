@@ -1,7 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: "com.bugsnag.android.gradle"
 apply plugin: "kotlin-android"
-apply plugin: "kotlin-android-extensions"
 
 
 project.ext.envConfigFiles = [
