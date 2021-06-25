@@ -7,5 +7,4 @@ val applyNativeModules: Closure<Any> = extra.get("applyNativeModulesSettingsGrad
 applyNativeModules(settings)
 
 include(":app", ":react-native-code-push")
-project(":react-native-code-push").projectDir =
-        File(rootProject.projectDir, "../node_modules/react-native-code-push/android/app")
+project(":react-native-code-push").projectDir = File(rootProject.projectDir, "../node_modules/react-native-code-push/android/app")

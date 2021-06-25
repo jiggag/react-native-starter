@@ -8,15 +8,15 @@ plugins {
 }
 
 ext["envConfigFiles"] = mapOf(
-        "debug" to ".env",
-        "release" to ".env.production"
+    "debug" to ".env",
+    "release" to ".env.production"
 )
 
 apply(from = "${project(":react-native-config").projectDir.path}/dotenv.gradle")
 
 ext["react"] = mapOf(
-        "entryFile" to "index.js",
-        "enableHermes" to true
+    "entryFile" to "index.js",
+    "enableHermes" to true
 )
 
 apply(from = "../../node_modules/react-native/react.gradle")
@@ -41,7 +41,7 @@ android {
         versionName = "0.0.1"
         multiDexEnabled = true
         manifestPlaceholders(mutableMapOf(
-                "bugsnagApiKey" to Constants.BUGSNAG_API_KEY
+            "bugsnagApiKey" to Constants.BUGSNAG_API_KEY
         ))
     }
 
@@ -79,17 +79,17 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
-                    getDefaultProguardFile("proguard-android-optimize.txt"),
-                    "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
             resValue("string", "CodePushDeploymentKey", Constants.CODE_PUSH_AOS_KEY)
         }
 
         val versionCodes = mapOf(
-                "armeabi-v7a" to 1,
-                "x86" to 2,
-                "arm64-v8a" to 3,
-                "x86_64" to 4
+            "armeabi-v7a" to 1,
+            "x86" to 2,
+            "arm64-v8a" to 3,
+            "x86_64" to 4
         )
 
 //        applicationVariants.all {
