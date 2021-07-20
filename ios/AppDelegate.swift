@@ -19,12 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     #endif
 
     let jsCodeLocation: URL
-    jsCodeLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index", fallbackResource:nil)
-//    #if DEBUG
-//      jsCodeLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index", fallbackResource:nil)
-//    #else
-//      jsCodeLocation = CodePush.bundleURL()
-//    #endif
+    #if DEBUG
+      jsCodeLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index", fallbackResource:nil)
+    #else
+      jsCodeLocation = CodePush.bundleURL()
+    #endif
 
     Bugsnag.start()
     AppCenterReactNative.register()
