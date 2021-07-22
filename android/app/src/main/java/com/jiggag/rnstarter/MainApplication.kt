@@ -10,6 +10,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.bugsnag.android.Bugsnag;
+import com.jiggag.rnstarter.config.RNConfigPackage
 import com.microsoft.codepush.react.CodePush;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,7 +22,13 @@ class MainApplication : Application(), ReactApplication {
         }
 
         override fun getPackages(): List<ReactPackage> {
-            return PackageList(this).packages
+            val packages: MutableList<ReactPackage> = PackageList(this).packages
+            packages.addAll(
+                listOf(
+                    RNConfigPackage(),
+                )
+            )
+            return packages
         }
 
         override fun getJSMainModuleName(): String {
