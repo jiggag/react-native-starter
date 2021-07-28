@@ -1,3 +1,7 @@
+plugin 'cocoapods-user-defined-build-types'
+
+enable_user_defined_build_types!
+
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
@@ -11,6 +15,7 @@ target 'RNStarter' do
     :hermes_enabled => false
   )
 
+  pod 'RealmSwift', :build_type => :dynamic_framework
 
   target 'RNStarterTests' do
     inherit! :complete
