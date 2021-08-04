@@ -16,6 +16,7 @@ buildscript {
         classpath("com.android.tools.build:gradle:4.1.3")
         classpath("com.bugsnag:bugsnag-android-gradle-plugin:5.+")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${com.jiggag.rnstarter.Constants.KOTLIN_VERSION}")
+        classpath("io.realm:realm-gradle-plugin:6.1.0")
     }
 }
 

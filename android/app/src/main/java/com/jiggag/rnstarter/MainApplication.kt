@@ -12,6 +12,8 @@ import com.facebook.soloader.SoLoader;
 import com.bugsnag.android.Bugsnag;
 import com.jiggag.rnstarter.config.RNConfigPackage
 import com.microsoft.codepush.react.CodePush;
+import io.realm.Realm
+import io.realm.RealmConfiguration
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -48,6 +50,17 @@ class MainApplication : Application(), ReactApplication {
         super.onCreate()
         Bugsnag.start(this)
         SoLoader.init(this, /* native exopackage */ false)
+        Realm.init(this)
+        Realm.setDefaultConfiguration(RealmConfiguration.Builder()
+            .schemaVersion(0)
+//            .migration { realm, oldVersion, newVersion -> // TODO realm migration
+//                val schema = realm.schema
+//                if (oldVersion == 0L) {
+//
+//                }
+//            }
+            .build())
+
         initializeFlipper(this, getReactNativeHost().reactInstanceManager)
     }
 

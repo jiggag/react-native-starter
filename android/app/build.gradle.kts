@@ -5,6 +5,8 @@ plugins {
     id("com.android.application")
     id("com.bugsnag.android.gradle")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("realm-android")
 }
 
 ext["envConfigFiles"] = mapOf(
