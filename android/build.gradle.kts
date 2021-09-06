@@ -9,11 +9,11 @@ extra["ndkVersion"] = Constants.NDK_VERSION
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:4.1.3")
+        classpath("com.android.tools.build:gradle:4.2.1")
         classpath("com.bugsnag:bugsnag-android-gradle-plugin:5.+")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${com.jiggag.rnstarter.Constants.KOTLIN_VERSION}")
         classpath("io.realm:realm-gradle-plugin:6.1.0")
@@ -22,6 +22,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         mavenLocal()
 
         // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
@@ -30,7 +31,6 @@ allprojects {
         maven("$rootDir/../node_modules/jsc-android/dist")
 
         google()
-        jcenter()
         maven("https://jitpack.io")
     }
 }

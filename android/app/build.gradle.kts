@@ -30,11 +30,6 @@ android {
     compileSdkVersion(Constants.COMPILE_SDK_VERSION)
     ndkVersion = Constants.NDK_VERSION
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
     defaultConfig {
         applicationId = "com.jiggag.rnstarter"
         minSdkVersion(Constants.MIN_SDK_VERSION)
@@ -140,7 +135,7 @@ dependencies {
 // Run this once to be able to run the application with BUCK
 // puts all compile dependencies into folder libs for BUCK to use
 tasks.register<Copy>("copyDownloadableDepsToLibs") {
-    from(configurations.compile)
+    from(configurations.implementation)
     into("libs")
 }
 
