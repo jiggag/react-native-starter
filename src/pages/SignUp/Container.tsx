@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { signUpAction } from '@actions/auth';
 import { splashAction } from '@actions/root';
 import { ContainerWrapper } from '@components/Wrapper';
-import Presenter from './Presenter';
+import { Presenter } from './Presenter';
 
-const Container = () => {
+export const Container = () => {
   const dispatch = useDispatch();
 
   const onPress = useCallback(() => dispatch(signUpAction.REQUEST()), [dispatch]);
@@ -20,5 +20,3 @@ const Container = () => {
     </ContainerWrapper>
   );
 };
-
-export default Container;

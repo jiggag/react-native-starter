@@ -1,22 +1,20 @@
 import { StyleSheet } from 'react-native';
-import colors from '@utils/Colors';
-import { fontFamily, fontSize } from '@utils/Fonts';
+import { Colors } from '@utils/Colors';
+import { FontFamily, FontSize } from '@utils/Fonts';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
     borderWidth: 2,
     paddingVertical: 30,
   },
   container: {
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
     flex: 1,
   },
   text: {
-    color: colors.black,
-    fontFamily: fontFamily.semiBold,
-    fontSize: fontSize.large,
+    color: Colors.black,
+    fontFamily: FontFamily.semiBold,
+    fontSize: FontSize.large,
   },
 });
-
-export default styles;

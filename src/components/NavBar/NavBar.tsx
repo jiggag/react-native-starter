@@ -1,48 +1,25 @@
 import React from 'react';
-import { StyleSheet, TouchableWithoutFeedback, Image } from 'react-native';
+import { StyleSheet } from 'react-native';
 import Text from 'react-native-ui-lib/text';
 import View from 'react-native-ui-lib/view';
-import images from '@utils/Images';
-
-interface Button {
-  onPress: () => void;
-}
-
-const NavBack = ({ onPress }: Button) => {
-  return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <View padding-8>
-        <Image source={images.arrowLeft} />
-      </View>
-    </TouchableWithoutFeedback>
-  );
-};
-
-const NavClose = ({ onPress }: Button) => {
-  return (
-    <TouchableWithoutFeedback onPress={onPress}>
-      <View padding-6>
-        <Image source={images.close} />
-      </View>
-    </TouchableWithoutFeedback>
-  );
-};
+import { NavBack } from 'components/NavBar/NavBack';
+import { NavClose } from 'components/NavBar/NavClose';
 
 const IS_CLOSE = {
   LEFT: 'LEFT',
   RIGHT: 'RIGHT',
 } as const;
 
-interface NavBar {
+interface NavBarProps {
   onPressLeft?: () => void;
   onPressRight?: () => void;
   text?: string;
   isClose?: 'LEFT' | 'RIGHT';
 }
 
-const NavBar = ({
+export const NavBar = ({
   onPressRight, text, onPressLeft, isClose = IS_CLOSE.RIGHT,
-}: NavBar) => {
+}: NavBarProps) => {
   return (
     <View row marginB-20 style={styles.nav}>
       <View flex>
@@ -65,8 +42,6 @@ const NavBar = ({
     </View>
   );
 };
-
-export default NavBar;
 
 const styles = StyleSheet.create({
   nav: {

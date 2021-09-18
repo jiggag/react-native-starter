@@ -4,8 +4,8 @@ import {
 } from 'react-native';
 import Text from 'react-native-ui-lib/text';
 import View from 'react-native-ui-lib/view';
-import colors from '@utils/Colors';
-import { fontFamily, fontSize, fontWeight } from '@utils/Fonts';
+import { Colors } from '@utils/Colors';
+import { FontFamily, FontSize, FontWeight } from '@utils/Fonts';
 
 interface ButtonProps {
   onPress: () => void;
@@ -15,7 +15,7 @@ interface ButtonProps {
   textStyle?: TextStyle;
 }
 
-const Button = ({
+export const Button = ({
   onPress, text, disabled = false, btnStyle = {}, textStyle = {},
 }: ButtonProps) => {
   const customBtnStyle = useMemo(() => [styles.button, btnStyle], [btnStyle]);
@@ -30,21 +30,19 @@ const Button = ({
   );
 };
 
-export default Button;
-
 const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
     justifyContent: 'center',
     paddingBottom: 17,
     paddingTop: 18,
   },
   text: {
-    color: colors.white,
-    fontFamily: fontFamily.medium,
-    fontSize: fontSize.medium,
-    fontWeight: fontWeight.normal,
+    color: Colors.white,
+    fontFamily: FontFamily.medium,
+    fontSize: FontSize.medium,
+    fontWeight: FontWeight.normal,
     letterSpacing: 0,
     lineHeight: 21,
     textAlign: 'center',

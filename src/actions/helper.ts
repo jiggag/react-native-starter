@@ -4,11 +4,13 @@ export const REQUEST = 'REQUEST';
 export const SUCCESS = 'SUCCESS';
 export const FAILURE = 'FAILURE';
 
-export type Payload<T = Record<string, string | number>> = T;
+export type Payload<T = Record<string, string | number | null>> = T;
+
 export interface Action<T> {
   type: string;
   payload: T;
 }
+
 const action = (type: string, payload: Payload = {}): Action<Payload> => {
   return { type, payload };
 };

@@ -36,18 +36,13 @@ api.addMonitor((response) => {
   }
 });
 
-const ApiService = async (URL: string, method: string, bodyParams: Record<string, unknown>) => {
-  let response = null;
+export const ApiService = async (url: string, method: string, bodyParams: Record<string, unknown>) => {
   switch (method) {
     case HEADERS_METHOD.get:
-      response = await api.get(URL, bodyParams);
-      break;
+      return api.get(url, bodyParams);
     case HEADERS_METHOD.post:
-      response = await api.post(URL, bodyParams);
-      break;
+      return api.post(url, bodyParams);
     default:
+      return null;
   }
-  return response;
 };
-
-export default ApiService;

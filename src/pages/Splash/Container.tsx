@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { splashAction } from '@actions/root';
 import { ContainerWrapper } from '@components/Wrapper';
-import Presenter from './Presenter';
+import { Presenter } from './Presenter';
 
-const Container = () => {
+export const Container = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -17,5 +17,3 @@ const Container = () => {
     </ContainerWrapper>
   );
 };
-
-export default Container;

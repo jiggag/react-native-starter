@@ -6,8 +6,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import createSagaMiddleware from 'redux-saga';
+import { Navigation } from './Navigation';
 import reducer from './reducers';
-import Router from './Router';
 import saga from './sagas';
 
 Bugsnag.start();
@@ -31,14 +31,12 @@ const store = createStore(persistedReducer, applyMiddleware(...middlewares));
 const persist = persistStore(store);
 sagaMiddleware.run(saga);
 
-const App = () => {
+export const App = () => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persist}>
-        <Router />
+        <Navigation />
       </PersistGate>
     </Provider>
   );
 };
-
-export default App;

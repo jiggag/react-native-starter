@@ -10,7 +10,7 @@ import Splash from './pages/Splash';
 
 const Stack = createStackNavigator();
 
-const Router = () => {
+export const Navigation = () => {
   const {
     auth: { token },
     root: { isAppSplash },
@@ -30,5 +30,3 @@ const Router = () => {
     </SafeAreaProvider>
   );
 };
-
-export default Router;

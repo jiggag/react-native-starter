@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import Wrapper from '@components/Wrapper';
+import { Wrapper } from '@components/Wrapper';
 
 const Presenter = () => {
   return (

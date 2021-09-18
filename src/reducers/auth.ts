@@ -1,16 +1,16 @@
 import produce, { Draft } from 'immer';
-import { Payload } from '@actions/helper';
+import { Action } from '@actions/helper';
 import { SIGN_UP } from '@actions/types';
 
 export interface AuthReducer {
   token: string;
 }
 
-const initialState = {
+const initialState: AuthReducer = {
   token: '',
 };
 
-const auth = (state: AuthReducer = initialState, action: { type: string; payload: Payload<AuthReducer> }) => {
+export const auth = (state = initialState, action: Action<AuthReducer>) => {
   return produce(state, (draft: Draft<AuthReducer>) => {
     switch (action.type) {
       case SIGN_UP.SUCCESS: {
@@ -27,5 +27,3 @@ const auth = (state: AuthReducer = initialState, action: { type: string; payload
     }
   });
 };
-
-export default auth;

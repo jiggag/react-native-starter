@@ -1,18 +1,18 @@
 import produce, { Draft } from 'immer';
-import { Payload } from '@actions/helper';
+import { Action } from '@actions/helper';
 import { SPLASH } from '@actions/types';
 
 export interface RootReducer {
   isAppSplash: boolean;
-  errorMessage: string;
+  errorMessage: string | null;
 }
 
-const initialState = {
+const initialState: RootReducer = {
   isAppSplash: true,
-  errorMessage: '',
+  errorMessage: null,
 };
 
-const root = (state: RootReducer = initialState, action: { type: string; payload: Payload<RootReducer> }) => {
+export const root = (state = initialState, action: Action<RootReducer>) => {
   return produce(state, (draft: Draft<RootReducer>) => {
     switch (action.type) {
       case SPLASH.SUCCESS:
@@ -23,5 +23,3 @@ const root = (state: RootReducer = initialState, action: { type: string; payload
     }
   });
 };
-
-export default root;

@@ -1,11 +1,11 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import { signUpAction } from '@actions/auth';
 import { SIGN_UP } from '@actions/types';
-import { postUser } from '@services/authController';
+import { postUser, PostUserResponse } from '@services/authController';
 
 function* workSaga() {
-  const response = yield call(postUser);
-  if (response.ok) {
+  const response: PostUserResponse = yield call(postUser);
+  if (response.ok && response.data) {
     const { token } = response.data;
     yield put(
       signUpAction.SUCCESS({

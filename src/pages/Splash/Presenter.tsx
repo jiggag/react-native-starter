@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text } from 'react-native';
-import Wrapper from '@components/Wrapper';
+import { Wrapper } from '@components/Wrapper';
 import { IS_DEV_MODE } from '@utils/Constants';
 
-const Presenter = () => {
+export const Presenter = () => {
   return (
     <Wrapper>
       <Text>
@@ -13,5 +13,3 @@ const Presenter = () => {
     </Wrapper>
   );
 };
-
-export default Presenter;
