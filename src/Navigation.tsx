@@ -22,7 +22,7 @@ export const Navigation = () => {
         <Splash />
       ) : (
         <NavigationContainer>
-          <Stack.Navigator headerMode="none">
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
             {token ? <Stack.Screen name="Root" component={Root} /> : <Stack.Screen name="SignUp" component={SignUp} />}
           </Stack.Navigator>
         </NavigationContainer>

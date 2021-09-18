@@ -9,6 +9,7 @@ import createSagaMiddleware from 'redux-saga';
 import { Navigation } from './Navigation';
 import reducer from './reducers';
 import saga from './sagas';
+import 'react-native-gesture-handler';
 
 Bugsnag.start();
 
