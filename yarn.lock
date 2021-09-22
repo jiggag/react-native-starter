@@ -8005,10 +8005,10 @@ react-native-color@0.0.10:
     react-native-slider "^0.11.0"
     tinycolor2 "^1.4.1"
 
-react-native-config@^1.4.1:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.2.tgz#cc39f22ed72c5cb06af1adf0ba70ef01593900b4"
-  integrity sha512-iTvCvThvFTH7SdiBcsxYtpLy86zglsh51ZBqFPPZ75tdrQMdlRnDNnb86kNjQf03KT0qs1nCMLRejfPMIim8iA==
+react-native-config@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.4.tgz#e0e10802d1e61ef051040c84dfd19f85a5984620"
+  integrity sha512-bu47sJHn/HrB7COAWBI8DieAhrbFLINHFE2HBCcVkDu0Y5ScrMs6vL+jhIm+pMSgxouseLhXG8h7xYYpxE38PA==
 
 react-native-flipper@^0.63.0:
   version "0.63.0"

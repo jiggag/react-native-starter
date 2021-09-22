@@ -31,6 +31,7 @@ allprojects {
         maven("$rootDir/../node_modules/jsc-android/dist")
 
         google()
+        jcenter()
         maven("https://jitpack.io")
     }
 }
