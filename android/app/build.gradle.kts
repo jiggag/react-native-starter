@@ -1,5 +1,6 @@
 import com.jiggag.rnstarter.Constants
 import groovy.lang.Closure
+import com.android.build.api.variant.FilterConfiguration.FilterType.*
 
 plugins {
     id("com.android.application")
@@ -81,27 +82,27 @@ android {
             )
             resValue("string", "CodePushDeploymentKey", Constants.CODE_PUSH_AOS_KEY)
         }
-
-        val versionCodes = mapOf(
-            "armeabi-v7a" to 1,
-            "x86" to 2,
-            "arm64-v8a" to 3,
-            "x86_64" to 4
-        )
-
-//        applicationVariants.all {
-//            this.outputs.all {
-//                val output = this as ApkVariantOutput
-//                val name = output.filters.find { it.filterType === "ABI" }?.identifier
-//                val versionCode = versionCodes[name]
-//                if (versionCode !== null) {
-//                    output.versionCode.set((defaultConfig.versionCode?.times(1000) ?: 0) + versionCodes)
-//                }
-//            }
-//        }
     }
 }
 
+val abiCodes = mapOf(
+    "armeabi-v7a" to 1,
+    "x86" to 2,
+    "arm64-v8a" to 3,
+    "x86_64" to 4
+)
+
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            val name = output.filters.find { it.filterType == ABI }?.identifier
+            val baseAbiCode = abiCodes[name]
+            if (baseAbiCode != null) {
+                output.versionCode.set(baseAbiCode + (output.versionCode.get() ?: 0).times(1000))
+            }
+        }
+    }
+}
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to "*.jar")))
