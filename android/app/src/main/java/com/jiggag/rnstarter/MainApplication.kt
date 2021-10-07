@@ -1,92 +1,96 @@
-package com.jiggag.rnstarter;
+package com.jiggag.rnstarter
 
-import android.app.Application;
-import android.content.Context;
+import android.app.Application
+import android.content.Context
 
-import com.facebook.react.PackageList;
-import com.facebook.react.ReactApplication;
-import com.facebook.react.ReactInstanceManager;
-import com.facebook.react.ReactNativeHost;
-import com.facebook.react.ReactPackage;
-import com.facebook.soloader.SoLoader;
-import com.bugsnag.android.Bugsnag;
+import com.facebook.react.PackageList
+import com.facebook.react.ReactApplication
+import com.facebook.react.ReactInstanceManager
+import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactPackage
+import com.facebook.soloader.SoLoader
+import com.bugsnag.android.Bugsnag
 import com.jiggag.rnstarter.config.RNConfigPackage
-import com.microsoft.codepush.react.CodePush;
+import com.microsoft.codepush.react.CodePush
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
-    private val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
-        override fun getUseDeveloperSupport(): Boolean {
-            return BuildConfig.DEBUG
-        }
-
-        override fun getPackages(): List<ReactPackage> {
-            val packages: MutableList<ReactPackage> = PackageList(this).packages
-            packages.addAll(
-                listOf(
-                    RNConfigPackage(),
-                )
-            )
-            return packages
-        }
-
-        override fun getJSMainModuleName(): String {
-            return "index"
-        }
-
-        override fun getJSBundleFile(): String? {
-            return CodePush.getJSBundleFile()
-        }
+  private val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
+    override fun getUseDeveloperSupport(): Boolean {
+      return BuildConfig.DEBUG
     }
 
-    override fun getReactNativeHost(): ReactNativeHost {
-        return reactNativeHost
+    override fun getPackages(): List<ReactPackage> {
+      val packages: MutableList<ReactPackage> = PackageList(this).packages
+      packages.addAll(
+        listOf(
+          RNConfigPackage(),
+        )
+      )
+      return packages
     }
 
-    override fun onCreate() {
-        super.onCreate()
-        Bugsnag.start(this)
-        SoLoader.init(this, /* native exopackage */ false)
-        Realm.init(this)
-        Realm.setDefaultConfiguration(RealmConfiguration.Builder()
-            .schemaVersion(0)
+    override fun getJSMainModuleName(): String {
+      return "index"
+    }
+
+    override fun getJSBundleFile(): String? {
+      return CodePush.getJSBundleFile()
+    }
+  }
+
+  override fun getReactNativeHost(): ReactNativeHost {
+    return reactNativeHost
+  }
+
+  override fun onCreate() {
+    super.onCreate()
+    Bugsnag.start(this)
+    SoLoader.init(this, /* native exopackage */ false)
+    Realm.init(this)
+    Realm.setDefaultConfiguration(
+      RealmConfiguration.Builder()
+        .schemaVersion(0)
 //            .migration { realm, oldVersion, newVersion -> // TODO realm migration
 //                val schema = realm.schema
 //                if (oldVersion == 0L) {
 //
 //                }
 //            }
-            .build())
+        .build()
+    )
 
-        initializeFlipper(this, getReactNativeHost().reactInstanceManager)
+    initializeFlipper(this, getReactNativeHost().reactInstanceManager)
+  }
+
+  /**
+   * Loads Flipper in React Native templates. Call this in the onCreate method with something like
+   * initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+   *
+   * @param context
+   * @param reactInstanceManager
+   */
+  private fun initializeFlipper(context: Context, reactInstanceManager: ReactInstanceManager) {
+    if (BuildConfig.DEBUG) {
+      try {
+        val aClass = Class.forName("com.jiggag.rnstarter.ReactNativeFlipper")
+        aClass.getMethod(
+          "initializeFlipper",
+          Context::class.java,
+          ReactInstanceManager::class.java
+        ).invoke(null, context, reactInstanceManager)
+      } catch (e: ClassNotFoundException) {
+        e.printStackTrace()
+      } catch (e: NoSuchMethodException) {
+        e.printStackTrace()
+      } catch (e: IllegalAccessException) {
+        e.printStackTrace()
+      } catch (e: InvocationTargetException) {
+        e.printStackTrace()
+      }
     }
-
-    /**
-     * Loads Flipper in React Native templates. Call this in the onCreate method with something like
-     * initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
-     *
-     * @param context
-     * @param reactInstanceManager
-     */
-    private fun initializeFlipper(context: Context, reactInstanceManager: ReactInstanceManager) {
-        if (BuildConfig.DEBUG) {
-            try {
-                val aClass = Class.forName("com.jiggag.rnstarter.ReactNativeFlipper")
-                aClass.getMethod("initializeFlipper", Context::class.java, ReactInstanceManager::class.java).invoke(null, context, reactInstanceManager)
-            } catch (e: ClassNotFoundException) {
-                e.printStackTrace()
-            } catch (e: NoSuchMethodException) {
-                e.printStackTrace()
-            } catch (e: IllegalAccessException) {
-                e.printStackTrace()
-            } catch (e: InvocationTargetException) {
-                e.printStackTrace()
-            }
-
-        }
-
-    }
+  }
 }
