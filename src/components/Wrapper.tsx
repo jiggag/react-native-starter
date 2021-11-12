@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { SafeAreaView, StatusBar, StyleSheet } from 'react-native';
 import View from 'react-native-ui-lib/view';
 import { Colors } from '@utils/Colors';
-import { barStyle } from '@utils/Constants';
+import { BarStyle } from '@utils/Constants';
 
 interface WrapperProps {
   isLight?: boolean;
@@ -13,7 +13,7 @@ export const ContainerWrapper = ({ isLight = true, children }: WrapperProps) => 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
-        barStyle={isLight ? barStyle.darkContent : barStyle.lightContent}
+        barStyle={isLight ? BarStyle.darkContent : BarStyle.lightContent}
         backgroundColor={isLight ? Colors.white : Colors.black}
       />
       {children}
