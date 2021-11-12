@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableWithoutFeedback, Image } from 'react-native';
+import { Image, Pressable } from 'react-native';
 import View from 'react-native-ui-lib/view';
 import { images } from 'utils/Images';
 
@@ -9,10 +9,10 @@ export interface NavBackProps {
 
 export const NavBack = ({ onPress }: NavBackProps) => {
   return (
-    <TouchableWithoutFeedback onPress={onPress}>
+    <Pressable onPress={onPress}>
       <View padding-8>
         <Image source={images.arrowLeft} />
       </View>
-    </TouchableWithoutFeedback>
+    </Pressable>
   );
 };

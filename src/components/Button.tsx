@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import {
-  ViewStyle, StyleSheet, TouchableWithoutFeedback, TextStyle,
+  ViewStyle, StyleSheet, Pressable, TextStyle,
 } from 'react-native';
 import Text from 'react-native-ui-lib/text';
 import View from 'react-native-ui-lib/view';
@@ -22,11 +22,11 @@ export const Button = ({
   const customTextStyle = useMemo(() => [styles.text, textStyle], [textStyle]);
 
   return (
-    <TouchableWithoutFeedback disabled={disabled} onPress={onPress}>
+    <Pressable disabled={disabled} onPress={onPress}>
       <View style={customBtnStyle}>
         <Text style={customTextStyle}>{text}</Text>
       </View>
-    </TouchableWithoutFeedback>
+    </Pressable>
   );
 };
 
