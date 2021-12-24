@@ -26,21 +26,23 @@ apply(from = "../../node_modules/react-native/react.gradle")
 apply(from = "../../node_modules/react-native-code-push/android/codepush.gradle")
 
 val enableHermes = (ext["react"] as Map<*, *>)["enableHermes"] as Boolean
+/**
+ * Architectures to build native code for in debug.
+ */
+val nativeArchitectures = (properties["reactNativeDebugArchitectures"] ?: "") as String
 
 android {
-  compileSdkVersion(Constants.COMPILE_SDK_VERSION)
+  compileSdk = Constants.COMPILE_SDK_VERSION
   ndkVersion = Constants.NDK_VERSION
 
   defaultConfig {
     applicationId = "com.jiggag.rnstarter"
-    minSdkVersion(Constants.MIN_SDK_VERSION)
-    targetSdkVersion(Constants.TARGET_SDK_VERSION)
+    minSdk = Constants.MIN_SDK_VERSION
+    targetSdk = Constants.TARGET_SDK_VERSION
     versionCode = 1
     versionName = "0.0.1"
     multiDexEnabled = true
-    manifestPlaceholders(mutableMapOf(
-      "bugsnagApiKey" to Constants.BUGSNAG_API_KEY
-    ))
+    addManifestPlaceholders(mapOf("bugsnagApiKey" to Constants.BUGSNAG_API_KEY))
   }
 
   splits {
@@ -70,6 +72,9 @@ android {
   buildTypes {
     getByName("debug") {
       signingConfig = signingConfigs.getByName("debug")
+      if (nativeArchitectures.isNotEmpty()) {
+        ndk.abiFilters.addAll(nativeArchitectures.split(","))
+      }
       resValue("string", "CodePushDeploymentKey", "")
       extra["enableCrashlytics"] = false
     }

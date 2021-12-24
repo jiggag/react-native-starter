@@ -10,6 +10,8 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.soloader.SoLoader
 import com.bugsnag.android.Bugsnag
+import com.facebook.react.bridge.JSIModulePackage
+import com.swmansion.reanimated.ReanimatedJSIModulePackage
 import com.jiggag.rnstarter.config.RNConfigPackage
 import com.microsoft.codepush.react.CodePush
 import io.realm.Realm
@@ -31,6 +33,10 @@ class MainApplication : Application(), ReactApplication {
         )
       )
       return packages
+    }
+
+    override fun getJSIModulePackage(): JSIModulePackage? {
+      return ReanimatedJSIModulePackage()
     }
 
     override fun getJSMainModuleName(): String {

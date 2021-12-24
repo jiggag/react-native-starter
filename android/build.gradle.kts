@@ -13,8 +13,8 @@ buildscript {
   }
 
   dependencies {
-    classpath("com.android.tools.build:gradle:4.2.1")
-    classpath("com.bugsnag:bugsnag-android-gradle-plugin:5.+")
+    classpath("com.android.tools.build:gradle:7.0.3")
+    classpath("com.bugsnag:bugsnag-android-gradle-plugin:7.+")
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${com.jiggag.rnstarter.Constants.KOTLIN_VERSION}")
     classpath("io.realm:realm-gradle-plugin:10.8.0")
   }
