@@ -20,8 +20,7 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-*.dSYM.zip
-*.dSYM
+
 # Android/IntelliJ
 #
 build/
@@ -53,31 +52,9 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
-*/fastlane/metadata
 
 # Bundle artifact
 *.jsbundle
 
 # CocoaPods
 /ios/Pods/
-.env
-.env.production
-google-services.json
-GoogleService-Info.plist
-
-# Android Build
-*.apk
-*.aab
-android/release/output.json
-android/google-key.json
-
-coverage
-.jest
-android/.project
-android/.settings/org.eclipse.buildship.core.prefs
-android/app/.classpath
-android/app/.project
-android/app/.settings/org.eclipse.buildship.core.prefs
-
-# react-native-config codegen
-ios/tmp.xcconfig
