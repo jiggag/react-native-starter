@@ -1,15 +1,19 @@
 # react-native-starter
+## feature/heavy-starter
 
 ```
 react-native
 typescript
 react-navigation
 redux
+redux-saga
+styled-components
 stylelint
 eslint
 fastlane
 bugsnag
 codepush
+apisauce
 ```
 
 #### 앱 이름 변경
