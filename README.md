@@ -45,3 +45,7 @@ appcenter codepush deployment list -a jiggag/equal-ios -k
 ios/RNStarter/Appcenter-Config.plist
 >>>> codepush 프로젝트에서 가져온 AppSecret 설정
 ```
+
+## feature/starter
+- [jiggag/react-native-starter](https://github.com/jiggag/react-native-starter)
+    - react-native@0.66.4
