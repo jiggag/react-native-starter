@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* RNStarterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* RNStarterTests.m */; };
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1F40A57F26A2D29E00C17CE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F40A57E26A2D29E00C17CE8 /* AppDelegate.swift */; };
 		2C174F4FA8C3A281BD96FBB9 /* libPods-RNStarter-RNStarterTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E05990E2FA5B8EB992D66D /* libPods-RNStarter-RNStarterTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		D5868907E1A09575385E11FE /* libPods-RNStarter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF7C0323DDBDD5C7239B9FF /* libPods-RNStarter.a */; };
@@ -31,11 +30,10 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* RNStarterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNStarterTests.m; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* RNStarter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RNStarter.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = RNStarter/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = RNStarter/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = RNStarter/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = RNStarter/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = RNStarter/main.m; sourceTree = "<group>"; };
+		1F40A57D26A2D29D00C17CE8 /* RNStarter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNStarter-Bridging-Header.h"; sourceTree = "<group>"; };
+		1F40A57E26A2D29E00C17CE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RNStarter/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BF7C0323DDBDD5C7239B9FF /* libPods-RNStarter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNStarter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2E05990E2FA5B8EB992D66D /* libPods-RNStarter-RNStarterTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RNStarter-RNStarterTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,12 +84,11 @@
 		13B07FAE1A68108700A75B9A /* RNStarter */ = {
 			isa = PBXGroup;
 			children = (
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				1F40A57E26A2D29E00C17CE8 /* AppDelegate.swift */,
+				1F40A57D26A2D29D00C17CE8 /* RNStarter-Bridging-Header.h */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
-				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = RNStarter;
 			sourceTree = "<group>";
@@ -207,7 +204,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1240;
 					};
 				};
 			};
@@ -410,8 +407,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				1F40A57F26A2D29E00C17CE8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RNStarter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -498,6 +495,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiggag.rnstarter;
 				PRODUCT_NAME = RNStarter;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNStarter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -511,6 +510,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				INFOPLIST_FILE = RNStarter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -524,6 +524,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiggag.rnstarter;
 				PRODUCT_NAME = RNStarter;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = RELEASE;
+				SWIFT_OBJC_BRIDGING_HEADER = "RNStarter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
