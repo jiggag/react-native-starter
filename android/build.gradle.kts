@@ -30,5 +30,7 @@ allprojects {
         google()
         jcenter()
         maven("https://jitpack.io")
+
+        maven("$rootDir/../node_modules/@notifee/react-native/android/libs")
     }
 }

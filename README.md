@@ -1,6 +1,12 @@
 # react-native-starter
 
 ## feature/starter
+- typescript
+- kotlin
+- swift
+- eslint
+
+## feature/heavy-starter
 - [jiggag/react-native-**heavy**-starter](https://github.com/jiggag/react-native-starter/tree/feature/heavy-starter)
   - typescript
   - kotlin
