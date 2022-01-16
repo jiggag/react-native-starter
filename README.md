@@ -5,6 +5,7 @@
 - kotlin
 - swift
 - eslint
+- react-query
 
 ## feature/heavy-starter
 - [jiggag/react-native-**heavy**-starter](https://github.com/jiggag/react-native-starter/tree/feature/heavy-starter)

@@ -7,7 +7,7 @@ object Constants {
     const val COMPILE_SDK_VERSION = 31
     const val TARGET_SDK_VERSION = 31
     const val NDK_VERSION = "21.4.7075529"
-    const val FLIPPER_VERSION = "0.99.0"
+    const val FLIPPER_VERSION = "0.128.4"
     const val VERSION_CODE = 1
     const val VERSION_NAME = "0.0.1"
 }

@@ -7,17 +7,28 @@ import {
   Text,
   useColorScheme,
 } from 'react-native';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
+
+if (__DEV__) {
+  import('react-query-native-devtools').then(({ addPlugin }) => {
+    addPlugin({ queryClient });
+  });
+}
 
 export function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <SafeAreaView>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <Text style={styles.sectionTitle}>Starter</Text>
-      </ScrollView>
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <Text style={styles.sectionTitle}>Starter</Text>
+        </ScrollView>
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 }
 
