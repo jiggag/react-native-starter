@@ -1,15 +1,33 @@
 import Foundation
 
+#if DEBUG
+#if FB_SONARKIT_ENABLED
+import FlipperKit
+#endif
+#endif
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var bridge: RCTBridge!
 
+  private func initializeFlipper(with application: UIApplication) {
+    #if DEBUG
+    #if FB_SONARKIT_ENABLED
+      let client = FlipperClient.shared()
+      let layoutDescriptorMapper = SKDescriptorMapper(defaults: ())
+      client?.add(FlipperKitLayoutPlugin(rootNode: application, with: layoutDescriptorMapper!))
+      client?.add(FKUserDefaultsPlugin(suiteName: nil))
+      client?.add(FlipperKitReactPlugin())
+      client?.add(FlipperKitNetworkPlugin(networkAdapter: SKIOSNetworkAdapter()))
+      client?.start()
+    #endif
+    #endif
+  }
+
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-    #if FB_SONARKIT_ENABLED
-      InitializeFlipper(application);
-    #endif
+    initializeFlipper(with: application)
 
     let jsCodeLocation: URL
     #if DEBUG
