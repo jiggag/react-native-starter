@@ -1,2 +1,2 @@
 /* eslint-disable */
-__DEV__ = false;
+global.__DEV__ = false;
