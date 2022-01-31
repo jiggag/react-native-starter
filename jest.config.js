@@ -1,18 +1,19 @@
 module.exports = {
-  preset: "react-native",
+  preset: 'react-native',
   moduleFileExtensions: [
-    "ts",
-    "tsx",
-    "js",
-    "jsx",
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
   ],
-  setupFiles: [],
+  setupFiles: [
+    '<rootDir>/__tests__/setup.ts',
+  ],
   globals: {
-    __DEV__: false,
     window: {}
   },
   transformIgnorePatterns: [
-    "node_modules/(?!@react-native|react-native)"
+    'node_modules/(?!@react-native|react-native)'
   ],
   testRegex: '__tests__/.*\\.test\\.(tsx|ts)$'
 };
