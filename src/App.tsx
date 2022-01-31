@@ -12,8 +12,13 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient();
 
 if (__DEV__) {
+  // eslint-disable-next-line import/no-extraneous-dependencies
   import('react-query-native-devtools').then(({ addPlugin }) => {
     addPlugin({ queryClient });
+
+    return true;
+  }).catch((err) => {
+    console.error(err);
   });
 }
 
