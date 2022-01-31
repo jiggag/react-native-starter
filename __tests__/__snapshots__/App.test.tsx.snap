@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+>
+  <RCTScrollView
+    contentInsetAdjustmentBehavior="automatic"
+  >
+    <View>
+      <Text
+        style={
+          Object {
+            "fontSize": 24,
+            "fontWeight": "600",
+          }
+        }
+      >
+        Starter
+      </Text>
+    </View>
+  </RCTScrollView>
+</RCTSafeAreaView>
+`;
