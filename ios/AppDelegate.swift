@@ -1,4 +1,5 @@
 import Foundation
+import Firebase
 
 #if DEBUG
 #if FB_SONARKIT_ENABLED
@@ -28,13 +29,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
     initializeFlipper(with: application)
+    FirebaseApp.configure()
 
     let jsCodeLocation: URL
-    #if DEBUG
       jsCodeLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index", fallbackResource:nil)
-    #else
-      jsCodeLocation = NSBundle.mainBundle().URLForResource("main", withExtension: "jsbundle")
-    #endif
+//    #if DEBUG
+//      jsCodeLocation = RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index", fallbackResource:nil)
+//    #else
+//    // TODO codepush
+//      jsCodeLocation = NSBundle.mainBundle().URLForResource("main", withExtension: "jsbundle")
+//    #endif
 
     let rootView = RCTRootView(bundleURL: jsCodeLocation, moduleName: "RNStarter", initialProperties: nil, launchOptions: launchOptions)
 
