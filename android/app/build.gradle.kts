@@ -5,6 +5,7 @@ import com.android.build.api.variant.FilterConfiguration.FilterType.*
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("com.google.gms.google-services")
 }
 
 ext["react"] = mapOf(
@@ -100,6 +101,7 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
+    implementation("com.google.firebase:firebase-bom:29.0.4")
 
     debugImplementation("com.facebook.flipper:flipper:${Constants.FLIPPER_VERSION}") {
         exclude(group = "com.facebook.fbjni")

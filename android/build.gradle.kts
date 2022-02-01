@@ -15,6 +15,7 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:4.2.2")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${com.jiggag.rnstarter.Constants.KOTLIN_VERSION}")
+        classpath("com.google.gms:google-services:4.3.10")
     }
 }
 
