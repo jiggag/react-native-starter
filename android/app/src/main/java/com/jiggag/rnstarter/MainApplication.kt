@@ -1,16 +1,16 @@
-package com.jiggag.rnstarter;
+package com.jiggag.rnstarter
 
-import android.app.Application;
-import android.content.Context;
+import android.app.Application
+import android.content.Context
 
-import com.facebook.react.PackageList;
-import com.facebook.react.ReactApplication;
-import com.facebook.react.ReactInstanceManager;
-import com.facebook.react.ReactNativeHost;
-import com.facebook.react.ReactPackage;
-import com.facebook.soloader.SoLoader;
+import com.facebook.react.PackageList
+import com.facebook.react.ReactApplication
+import com.facebook.react.ReactInstanceManager
+import com.facebook.react.ReactNativeHost
+import com.facebook.react.ReactPackage
+import com.facebook.soloader.SoLoader
 
-import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
     private val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
@@ -57,8 +57,6 @@ class MainApplication : Application(), ReactApplication {
             } catch (e: InvocationTargetException) {
                 e.printStackTrace()
             }
-
         }
-
     }
 }
