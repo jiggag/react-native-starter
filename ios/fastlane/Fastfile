@@ -22,16 +22,19 @@ platform :ios do
   end
 
   lane :beta do
-    build_app(scheme: "RNStarter")
-  end
-
-  lane :distribute do
-    build_app(scheme: "RNStarter")
+    build_app(
+      scheme: "RNStarter (Staging)",
+      export_method: "development",
+    )
 
     firebase_app_distribution(
       app: ENV["FIREBASE_APP_ID_IOS"],
       groups: ENV["FIREBASE_TEST_GROUPS"],
       firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
     )
+  end
+
+  lane :distribute do
+    build_app(scheme: "RNStarter")
   end
 end
