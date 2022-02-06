@@ -8,12 +8,17 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest --coverage",
-    "lint": "eslint . --ext .js,.ts,.tsx --fix"
+    "lint": "eslint . --ext .js,.ts,.tsx --fix",
+    "reinstall": "rm -rf node_modules && yarn install"
   },
   "dependencies": {
     "@notifee/react-native": "^4.0.1",
+    "@react-navigation/native": "^6.0.8",
+    "@react-navigation/native-stack": "^6.4.1",
     "react": "17.0.2",
     "react-native": "0.66.4",
+    "react-native-safe-area-context": "^3.3.2",
+    "react-native-screens": "^3.10.2",
     "react-query": "^3.34.8"
   },
   "devDependencies": {
