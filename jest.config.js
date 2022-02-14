@@ -11,7 +11,7 @@ module.exports = {
     window: {}
   },
   transformIgnorePatterns: [
-    'node_modules/(?!@react-native|react-native)'
+    'node_modules/(?!@react-native|react-native|@react-navigation)'
   ],
   moduleNameMapper: {
     'react-query-native-devtools': '<rootDir>/__mocks__/react-query-native-devtools.ts'
