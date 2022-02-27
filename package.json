@@ -9,7 +9,8 @@
     "start": "react-native start",
     "test": "jest --coverage",
     "lint": "eslint . --ext .js,.ts,.tsx --fix",
-    "reinstall": "rm -rf node_modules && yarn install"
+    "reinstall": "rm -rf node_modules && yarn install",
+    "postinstall": "cd ios && pod install"
   },
   "dependencies": {
     "@notifee/react-native": "^4.0.1",
