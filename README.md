@@ -36,7 +36,12 @@
   - iOS
     - `FIREBASE_APP_ID_IOS`
     - `GOOGLE_SERVICE_INFO_PLIST`: `GoogleService-Info.plist`
-    - provisioning 관련
+    - `BUILD_CERTIFICATE_BASE64`: 발급한 iOS Development 인증서에서 내보낸 p12의 base64
+      - `base64 {파일} | pbcopy` => 복사해서 사용
+    - `BUILD_PROVISION_PROFILE_BASE64`: 발급한 iOS Development Provisioning `*.mobileprovision`의 base64
+    - `P12_PASSWORD`: p12 만들면서 사용한 패스워드
+    - `KEYCHAIN_PASSWORD`: 임의의 값
+  
 
 ------
 ## feature/heavy-starter
