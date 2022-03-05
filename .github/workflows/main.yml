@@ -51,9 +51,10 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: §{{ env.RUBY_VERSION }}
+          bundler-cache: true
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -62,9 +63,6 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: ${{ runner.os }}-modules-
-
-      - name: Install bundle
-        run: cd android && bundle install && cd ..
 
       - name: Install packages
         if: steps.node-cache.outputs.cache-hit != 'true'
@@ -91,9 +89,10 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - uses: actions/setup-ruby@v1
+      - uses: ruby/setup-ruby@v1
         with:
           ruby-version: §{{ env.RUBY_VERSION }}
+          bundler-cache: true
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -102,9 +101,6 @@ jobs:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: ${{ runner.os }}-modules-
-
-      - name: Install bundle
-        run: cd ios && bundle install && cd ..
 
       - name: Install packages
         if: steps.node-cache.outputs.cache-hit != 'true'
