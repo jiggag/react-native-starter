@@ -1,11 +1,16 @@
-name: Lint & Test
+name: Main
 
 on:
   push:
     branches: [ main ]
 
+env:
+  NODE_VERSION: 16
+  RUBY_VERSION: 2.6.3
+
 jobs:
-  lint-test:
+  verification:
+    name: Verification
     runs-on: ubuntu-latest
 
     steps:
@@ -28,3 +33,85 @@ jobs:
         run: |
           yarn lint
           yarn test
+
+  deploy-android:
+    name: Android
+    if: ${{ contains(github.event.head_commit.message, '[deploy-android]') }}
+    runs-on: ubuntu-latest
+    needs: [ verification ]
+    env:
+      FIREBASE_APP_ID_AOS: ${{ secrets.FIREBASE_APP_ID_AOS }}
+      FIREBASE_TEST_GROUPS: ${{ secrets.FIREBASE_TEST_GROUPS }}
+      FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: §{{ env.RUBY_VERSION }}
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: node-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-modules-
+
+      - name: Install bundle
+        run: cd android && bundle install && cd ..
+
+      - name: Install packages
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: |
+          yarn install
+
+      - name: Deploy
+        run: cd android && fastlane beta
+
+  deploy-ios:
+    name: iOS
+    if: ${{ contains(github.event.head_commit.message, '[deploy-ios]') }}
+    runs-on: macos-latest
+    needs: [ verification ]
+    env:
+      FIREBASE_APP_ID_IOS: ${{ secrets.FIREBASE_APP_ID_IOS }}
+      FIREBASE_TEST_GROUPS: ${{ secrets.FIREBASE_TEST_GROUPS }}
+      FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: §{{ env.RUBY_VERSION }}
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        id: node-cache
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-modules-
+
+      - name: Install bundle
+        run: cd ios && bundle install && cd ..
+
+      - name: Install packages
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: Install pod
+        run: cd ios && pod install && cd ..
+
+      - name: Deploy
+        run: cd ios && fastlane beta
