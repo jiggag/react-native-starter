@@ -54,7 +54,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
-          bundler-cache: false
+          bundler-cache: true
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -76,7 +76,7 @@ jobs:
         run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ./android/app/google-services.json
 
       - name: Deploy
-        run: cd android && fastlane beta && cd ..
+        run: cd android && bundle exec fastlane beta && cd ..
 
   deploy-ios:
     name: Deploy iOS
