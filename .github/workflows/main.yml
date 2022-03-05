@@ -115,6 +115,9 @@ jobs:
         if: steps.node-cache.outputs.cache-hit != 'true'
         run: yarn install
 
+      - name: Generate GoogleService-Info.plist
+        run: echo '${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}' > ./ios/RNStarter/GoogleService-Info.plist
+
       - name: Install pod
         run: cd ios && pod install && cd ..
 
