@@ -69,8 +69,11 @@ jobs:
         run: |
           yarn install
 
+      - name: Generate google-services.json
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > ../android/app/google-services.json
+
       - name: Deploy
-        run: cd android && fastlane beta
+        run: cd android && bundle exec fastlane beta && cd ..
 
   deploy-ios:
     name: Deploy iOS
@@ -110,4 +113,4 @@ jobs:
         run: cd ios && pod install && cd ..
 
       - name: Deploy
-        run: cd ios && fastlane beta
+        run: cd ios && bundle exec fastlane beta && cd ..
