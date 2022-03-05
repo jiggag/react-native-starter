@@ -24,7 +24,20 @@
   export FIREBASE_CLI_TOKEN="FIREBASE_CLI_TOKEN"
   export FIREBASE_TEST_GROUPS="FIREBASE_TEST_GROUPS"
   ```
-  
+
+## Actions 앱 배포 준비
+- 깃헙 액션 시크릿키 설정
+  - 공통
+    - `FIREBASE_CLI_TOKEN`
+    - `FIREBASE_TEST_GROUPS`
+  - 안드로이드
+    - `FIREBASE_APP_ID_AOS`
+    - `GOOGLE_SERVICES_JSON`: `google-services.json`
+  - iOS
+    - `FIREBASE_APP_ID_IOS`
+    - `GOOGLE_SERVICE_INFO_PLIST`: `GoogleService-Info.plist`
+    - provisioning 관련
+
 ------
 ## feature/heavy-starter
 - [jiggag/react-native-**heavy**-starter](https://github.com/jiggag/react-native-starter/tree/feature/heavy-starter)
