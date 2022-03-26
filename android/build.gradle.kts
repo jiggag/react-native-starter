@@ -9,7 +9,7 @@ extra["ndkVersion"] = Constants.NDK_VERSION
 buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -21,15 +21,20 @@ buildscript {
 
 allprojects {
     repositories {
-        mavenLocal()
-
         // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
         maven("$rootDir/../node_modules/react-native/android")
         // Android JSC is installed from npm
         maven("$rootDir/../node_modules/jsc-android/dist")
 
+        mavenCentral {
+            // We don't want to fetch react-native from Maven Central as there are
+            // older versions over there.
+            content {
+                excludeGroup("com.facebook.react")
+            }
+        }
+
         google()
-        jcenter()
         maven("https://jitpack.io")
 
         maven("$rootDir/../node_modules/@notifee/react-native/android/libs")

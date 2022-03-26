@@ -64,3 +64,5 @@ coverage/
 google-services.json
 GoogleService-Info.plist
 *.dSYM.zip
+
+vendor
