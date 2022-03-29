@@ -8,12 +8,14 @@ import com.facebook.react.ReactApplication
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
+import com.facebook.react.config.ReactFeatureFlags
+import com.jiggag.rnstarter.newarchitecture.MainApplicationReactNativeHost
 import com.facebook.soloader.SoLoader
 
 import java.lang.reflect.InvocationTargetException
 
 class MainApplication : Application(), ReactApplication {
-    private val reactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
+    private val mReactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
         override fun getUseDeveloperSupport(): Boolean {
             return BuildConfig.DEBUG
         }
@@ -27,12 +29,21 @@ class MainApplication : Application(), ReactApplication {
         }
     }
 
+    private val mNewArchitectureNativeHost: ReactNativeHost = MainApplicationReactNativeHost(this)
+
     override fun getReactNativeHost(): ReactNativeHost {
-        return reactNativeHost
+        return if (com.jiggag.rnstarter.BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
+            mNewArchitectureNativeHost
+        } else {
+            mReactNativeHost
+        }
     }
+
 
     override fun onCreate() {
         super.onCreate()
+        // If you opted-in for the New Architecture, we enable the TurboModule system
+        ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
         SoLoader.init(this, /* native exopackage */ false)
         initializeFlipper(this, getReactNativeHost().reactInstanceManager)
     }
