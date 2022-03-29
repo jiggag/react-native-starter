@@ -22,7 +22,6 @@ exports[`renders correctly 1`] = `
     <RNSScreen
       collapsable={false}
       forwardedRef={[Function]}
-      nativeID="animatedComponent"
       onAppear={[Function]}
       onDisappear={[Function]}
       onDismissed={[Function]}
@@ -88,7 +87,6 @@ exports[`renders correctly 1`] = `
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
