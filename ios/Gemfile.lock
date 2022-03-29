@@ -210,11 +210,15 @@ GEM
       xcpretty (~> 0.2, >= 0.0.7)
 
 PLATFORMS
+  ruby
   x86_64-darwin-20
 
 DEPENDENCIES
   fastlane
   fastlane-plugin-firebase_app_distribution
+
+RUBY VERSION
+   ruby 2.7.4p191
 
 BUNDLED WITH
    2.3.6

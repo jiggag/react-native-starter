@@ -6,7 +6,7 @@ on:
 
 env:
   NODE_VERSION: 16
-  RUBY_VERSION: 2.6.3
+  RUBY_VERSION: 2.7.4
 
 jobs:
   verification:
@@ -64,8 +64,20 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: ${{ runner.os }}-modules-
 
+      - name: Cache bundle
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.RUBY_VERSION }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.RUBY_VERSION }}
+
       - name: Install bundle
-        run: bundle install
+        run: |
+          gem install bundler:2.3.6
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+          cd android && bundle install --jobs 4 --retry 3 && cd ..
 
       - name: Install packages
         if: steps.node-cache.outputs.cache-hit != 'true'
@@ -108,8 +120,20 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: ${{ runner.os }}-modules-
 
+      - name: Cache bundle
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ env.RUBY_VERSION }}-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-${{ env.RUBY_VERSION }}
+
       - name: Install bundle
-        run: bundle install
+        run: |
+          gem install bundler:2.3.6
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+          cd ios && bundle install --jobs 4 --retry 3 && cd ..
 
       - name: Install packages
         if: steps.node-cache.outputs.cache-hit != 'true'
