@@ -11,7 +11,7 @@ private fun getProperty(key: String): String {
 }
 
 object Constants {
-    const val KOTLIN_VERSION = "1.4.32"
+    const val KOTLIN_VERSION = "1.6.0"
     const val BUILD_TOOLS_VERSION = "31.0.0"
     const val MIN_SDK_VERSION = 21
     const val COMPILE_SDK_VERSION = 31
