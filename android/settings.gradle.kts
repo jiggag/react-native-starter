@@ -7,3 +7,8 @@ val applyNativeModules: Closure<Any> = extra.get("applyNativeModulesSettingsGrad
 applyNativeModules(settings)
 
 include(":app")
+
+includeBuild("../node_modules/react-native-gradle-plugin")
+
+include(":ReactAndroid")
+project(":ReactAndroid").projectDir = file("../node_modules/react-native/ReactAndroid")
