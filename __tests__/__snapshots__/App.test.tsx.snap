@@ -25,6 +25,7 @@ exports[`renders correctly 1`] = `
       onAppear={[Function]}
       onDisappear={[Function]}
       onDismissed={[Function]}
+      onTransitionProgress={[Function]}
       onWillDisappear={[Function]}
       replaceAnimation="push"
       stackPresentation="push"
