@@ -1,6 +1,7 @@
 import com.jiggag.rnstarter.Constants
 import groovy.lang.Closure
 import com.android.build.api.variant.FilterConfiguration.FilterType.*
+import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
     id("com.android.application")
@@ -52,6 +53,12 @@ android {
                 // Make sure this target name is the same you specify inside the
                 // src/main/jni/Android.mk file for the `LOCAL_MODULE` variable.
                 targets += listOf("rnstarter_appmodules")
+
+                // Fix for windows limit on number of character in file paths and in command lines
+                if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                    arguments += listOf("NDK_OUT=${rootProject.projectDir.parent}\\.cxx",
+                        "NDK_APP_SHORT_COMMANDS=true")
+                }
             }
         }
     }
