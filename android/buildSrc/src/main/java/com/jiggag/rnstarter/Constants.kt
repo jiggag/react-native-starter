@@ -35,4 +35,6 @@ object Constants {
     val FLIPPER_VERSION = getProperty("FLIPPER_VERSION")
     const val VERSION_CODE = 1
     const val VERSION_NAME = "0.0.1"
+    val ARCHITECTURES = getProperty("reactNativeArchitectures")
+    val NEW_ARCH_ENABLED = getProperty("newArchEnabled")
 }
