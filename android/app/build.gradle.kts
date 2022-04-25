@@ -21,7 +21,7 @@ val architectures = Constants.ARCHITECTURES.split(",")
 val isNewArchitectureEnabled = Constants.NEW_ARCH_ENABLED === "true"
 
 android {
-    compileSdkVersion(Constants.COMPILE_SDK_VERSION)
+    compileSdk = Constants.COMPILE_SDK_VERSION
     ndkVersion = Constants.NDK_VERSION
 
     compileOptions {

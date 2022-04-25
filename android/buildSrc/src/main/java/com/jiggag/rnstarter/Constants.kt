@@ -26,6 +26,8 @@ private fun getNdkVersion(): String {
 }
 
 object Constants {
+    const val VERSION_CODE = 1
+    const val VERSION_NAME = "0.0.1"
     const val KOTLIN_VERSION = "1.6.0"
     const val BUILD_TOOLS_VERSION = "31.0.0"
     const val MIN_SDK_VERSION = 21
@@ -33,8 +35,6 @@ object Constants {
     const val TARGET_SDK_VERSION = 31
     val NDK_VERSION = getNdkVersion()
     val FLIPPER_VERSION = getProperty("FLIPPER_VERSION")
-    const val VERSION_CODE = 1
-    const val VERSION_NAME = "0.0.1"
     val ARCHITECTURES = getProperty("reactNativeArchitectures")
     val NEW_ARCH_ENABLED = getProperty("newArchEnabled")
 }
