@@ -18,14 +18,14 @@ class MainActivity : ReactActivity() {
    * Returns the instance of the [ReactActivityDelegate]. There the RootView is created and
    * you can specify the rendered you wish to use (Fabric or the older renderer).
    */
-  override fun createReactActivityDelegate(): ReactActivityDelegate? {
-    return MainActivityDelegate(this, getMainComponentName())
+  override fun createReactActivityDelegate(): ReactActivityDelegate {
+    return MainActivityDelegate(this, mainComponentName)
   }
 
   class MainActivityDelegate(activity: ReactActivity?, mainComponentName: String?) :
     ReactActivityDelegate(activity, mainComponentName) {
     override fun createRootView(): ReactRootView {
-      val reactRootView = ReactRootView(getContext())
+      val reactRootView = ReactRootView(context)
       // If you opted-in for the New Architecture, we enable the Fabric Renderer.
       reactRootView.setIsFabric(true)
       return reactRootView
