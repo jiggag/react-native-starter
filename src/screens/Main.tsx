@@ -7,6 +7,7 @@ export function Main() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const onPress = useCallback(() => {
+    console.log('onPress');
   }, []);
 
   return (

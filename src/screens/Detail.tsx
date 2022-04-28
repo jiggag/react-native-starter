@@ -8,6 +8,7 @@ export function Detail() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const onPress = useCallback(() => {
+    console.log('onPress');
   }, []);
 
   const onDisplayNotification = useCallback(async () => {
