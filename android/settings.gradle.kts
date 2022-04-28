@@ -10,5 +10,8 @@ include(":app")
 
 includeBuild("../node_modules/react-native-gradle-plugin")
 
-include(":ReactAndroid")
-project(":ReactAndroid").projectDir = file("../node_modules/react-native/ReactAndroid")
+val newArchEnabled = extra["newArchEnabled"] as String
+if (newArchEnabled == "true") {
+    include(":ReactAndroid")
+    project(":ReactAndroid").projectDir = file("../node_modules/react-native/ReactAndroid")
+}

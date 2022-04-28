@@ -16,8 +16,11 @@ ext["react"] = mapOf(
 
 apply(from = "../../node_modules/react-native/react.gradle")
 
+val enableSeparateBuildPerCPUArchitecture = true
+val enableProguardInReleaseBuilds = true
+val jscFlavor = "org.webkit:android-jsc:+"
 val enableHermes = (ext["react"] as Map<*, *>)["enableHermes"] as Boolean
-val architectures = Constants.ARCHITECTURES.split(",")
+val reactNativeArchitectures = Constants.REACT_NATIVE_ARCHITECTURES.split(",")
 val isNewArchitectureEnabled = Constants.NEW_ARCH_ENABLED === "true"
 
 android {
@@ -37,7 +40,7 @@ android {
         versionName = Constants.VERSION_NAME
         multiDexEnabled = true
         manifestPlaceholders += mutableMapOf()
-        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", "true")
+        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled.toString())
 
         if (isNewArchitectureEnabled) {
             externalNativeBuild {
@@ -70,6 +73,11 @@ android {
                             "NDK_OUT=${rootProject.projectDir.parent}\\.cxx",
                             "NDK_APP_SHORT_COMMANDS=true"
                         )
+                    }
+                }
+                if (!enableSeparateBuildPerCPUArchitecture) {
+                    ndk {
+                        abiFilters += reactNativeArchitectures.joinToString()
                     }
                 }
             }
@@ -117,7 +125,7 @@ android {
                 dependsOn("preDebugBuild")
             }
 
-            architectures.forEach { architecture ->
+            reactNativeArchitectures.forEach { architecture ->
                 tasks.findByName("configureNdkBuildDebug[${architecture}]")?.configure<Copy> {
                     dependsOn("preDebugBuild")
                 }
@@ -130,10 +138,10 @@ android {
 
     splits {
         abi {
-            isEnable = true
             reset()
-            include(architectures.joinToString())
+            isEnable = enableSeparateBuildPerCPUArchitecture
             isUniversalApk = false
+            include(reactNativeArchitectures.joinToString())
         }
     }
 
@@ -158,7 +166,7 @@ android {
         }
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = true
+            isMinifyEnabled = enableProguardInReleaseBuilds
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -213,7 +221,7 @@ dependencies {
         debugImplementation(files("${hermesPath}hermes-debug.aar"))
         releaseImplementation(files("${hermesPath}hermes-release.aar"))
     } else {
-        implementation("org.webkit:android-jsc:+")
+        implementation(jscFlavor)
     }
 }
 

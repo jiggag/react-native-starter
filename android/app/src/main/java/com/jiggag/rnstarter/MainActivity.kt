@@ -27,7 +27,8 @@ class MainActivity : ReactActivity() {
     override fun createRootView(): ReactRootView {
       val reactRootView = ReactRootView(context)
       // If you opted-in for the New Architecture, we enable the Fabric Renderer.
-      reactRootView.setIsFabric(true)
+      // If you opted-in for the New Architecture, we enable the Fabric Renderer.
+      reactRootView.setIsFabric(BuildConfig.IS_NEW_ARCHITECTURE_ENABLED);
       return reactRootView
     }
   }

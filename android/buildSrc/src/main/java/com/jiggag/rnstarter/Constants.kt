@@ -35,6 +35,6 @@ object Constants {
     const val TARGET_SDK_VERSION = 31
     val NDK_VERSION = getNdkVersion()
     val FLIPPER_VERSION = getProperty("FLIPPER_VERSION")
-    val ARCHITECTURES = getProperty("reactNativeArchitectures")
+    val REACT_NATIVE_ARCHITECTURES = getProperty("reactNativeArchitectures")
     val NEW_ARCH_ENABLED = getProperty("newArchEnabled")
 }
