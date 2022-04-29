@@ -1,6 +1,7 @@
 import com.jiggag.rnstarter.Constants
 import groovy.lang.Closure
 import com.android.build.api.variant.FilterConfiguration.FilterType.*
+import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
     id("com.android.application")
@@ -15,11 +16,15 @@ ext["react"] = mapOf(
 
 apply(from = "../../node_modules/react-native/react.gradle")
 
-val architectures = listOf("armeabi-v7a", "x86", "arm64-v8a", "x86_64")
+val enableSeparateBuildPerCPUArchitecture = true
+val enableProguardInReleaseBuilds = true
+val jscFlavor = "org.webkit:android-jsc:+"
 val enableHermes = (ext["react"] as Map<*, *>)["enableHermes"] as Boolean
+val reactNativeArchitectures = Constants.REACT_NATIVE_ARCHITECTURES.split(",")
+val isNewArchitectureEnabled = Constants.NEW_ARCH_ENABLED === "true"
 
 android {
-    compileSdkVersion(Constants.COMPILE_SDK_VERSION)
+    compileSdk = Constants.COMPILE_SDK_VERSION
     ndkVersion = Constants.NDK_VERSION
 
     compileOptions {
@@ -35,77 +40,108 @@ android {
         versionName = Constants.VERSION_NAME
         multiDexEnabled = true
         manifestPlaceholders += mutableMapOf()
-        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", "true")
+        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled.toString())
 
+        if (isNewArchitectureEnabled) {
+            externalNativeBuild {
+                ndkBuild {
+                    arguments += listOf(
+                        "APP_PLATFORM=android-21",
+                        "APP_STL=c++_shared",
+                        "NDK_TOOLCHAIN_VERSION=clang",
+                        "GENERATED_SRC_DIR=$buildDir/generated/source",
+                        "PROJECT_BUILD_DIR=$buildDir",
+                        "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
+                        "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build"
+                    )
+
+                    cFlags += listOf(
+                        "-Wall",
+                        "-Werror",
+                        "-fexceptions",
+                        "-frtti",
+                        "-DWITH_INSPECTOR=1"
+                    )
+                    cppFlags += listOf("-std=c++17")
+                    // Make sure this target name is the same you specify inside the
+                    // src/main/jni/Android.mk file for the `LOCAL_MODULE` variable.
+                    targets += listOf("rnstarter_appmodules")
+
+                    // Fix for windows limit on number of character in file paths and in command lines
+                    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                        arguments += listOf(
+                            "NDK_OUT=${rootProject.projectDir.parent}\\.cxx",
+                            "NDK_APP_SHORT_COMMANDS=true"
+                        )
+                    }
+                }
+                if (!enableSeparateBuildPerCPUArchitecture) {
+                    ndk {
+                        abiFilters += reactNativeArchitectures.joinToString()
+                    }
+                }
+            }
+        }
+    }
+
+    if (isNewArchitectureEnabled) {
         externalNativeBuild {
             ndkBuild {
-                arguments += listOf("APP_PLATFORM=android-21",
-                "APP_STL=c++_shared",
-                "NDK_TOOLCHAIN_VERSION=clang",
-                "GENERATED_SRC_DIR=$buildDir/generated/source",
-                "PROJECT_BUILD_DIR=$buildDir",
-                "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
-                "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build")
-
-                cFlags += listOf("-Wall", "-Werror", "-fexceptions", "-frtti", "-DWITH_INSPECTOR=1")
-                cppFlags += listOf("-std=c++17")
-                // Make sure this target name is the same you specify inside the
-                // src/main/jni/Android.mk file for the `LOCAL_MODULE` variable.
-                targets += listOf("rnstarter_appmodules")
+                path = file("$projectDir/src/main/jni/Android.mk")
             }
         }
-    }
 
-    externalNativeBuild {
-        ndkBuild {
-            path = file("$projectDir/src/main/jni/Android.mk")
+        val reactAndroidProjectDir = project(":ReactAndroid").projectDir
+        val packageReactNdkDebugLibs = tasks.register<Copy>("packageReactNdkDebugLibs") {
+            dependsOn(":ReactAndroid:packageReactNdkDebugLibsForBuck")
+            from("$reactAndroidProjectDir/src/main/jni/prebuilt/lib")
+            into("$buildDir/react-ndk/exported")
         }
-    }
-
-    val reactAndroidProjectDir = project(":ReactAndroid").projectDir
-    val packageReactNdkDebugLibs = tasks.register<Copy>("packageReactNdkDebugLibs") {
-        dependsOn(":ReactAndroid:packageReactNdkDebugLibsForBuck")
-        from("$reactAndroidProjectDir/src/main/jni/prebuilt/lib")
-        into("$buildDir/react-ndk/exported")
-    }
-    val packageReactNdkReleaseLibs = tasks.register<Copy>("packageReactNdkReleaseLibs") {
-        dependsOn(":ReactAndroid:packageReactNdkReleaseLibsForBuck")
-        from("$reactAndroidProjectDir/src/main/jni/prebuilt/lib")
-        into("$buildDir/react-ndk/exported")
-    }
-
-    afterEvaluate {
-        // If you wish to add a custom TurboModule or component locally,
-        // you should uncomment this line.
-        // preBuild.dependsOn("generateCodegenArtifactsFromSchema")
-        tasks.matching { it.name == "preDebugBuild" }.all {
-            dependsOn(packageReactNdkDebugLibs)
+        val packageReactNdkReleaseLibs = tasks.register<Copy>("packageReactNdkReleaseLibs") {
+            dependsOn(":ReactAndroid:packageReactNdkReleaseLibsForBuck")
+            from("$reactAndroidProjectDir/src/main/jni/prebuilt/lib")
+            into("$buildDir/react-ndk/exported")
         }
-        tasks.matching { it.name == "preReleaseBuild" }.all {
-            dependsOn(packageReactNdkReleaseLibs)
-        }
-        // Due to a bug inside AGP, we have to explicitly set a dependency
-        // between configureNdkBuild* tasks and the preBuild tasks.
-        // This can be removed once this is solved: https://issuetracker.google.com/issues/207403732
-//        configureNdkBuildRelease.dependsOn(preReleaseBuild)
-//        configureNdkBuildDebug.dependsOn(preDebugBuild)
 
-        architectures.forEach { architecture ->
-            tasks.register<Copy>("configureNdkBuildDebug[${architecture}]").configure {
+        afterEvaluate {
+            // If you wish to add a custom TurboModule or component locally,
+            // you should uncomment this line.
+//            tasks.findByName("preBuild")?.configure<Copy> {
+//                dependsOn("generateCodegenArtifactsFromSchema")
+//            }
+            tasks.findByName("preDebugBuild")?.configure<Copy> {
+                dependsOn(packageReactNdkDebugLibs)
+            }
+            tasks.findByName("preReleaseBuild")?.configure<Copy> {
+                dependsOn(packageReactNdkReleaseLibs)
+            }
+            // Due to a bug inside AGP, we have to explicitly set a dependency
+            // between configureNdkBuild* tasks and the preBuild tasks.
+            // This can be removed once this is solved: https://issuetracker.google.com/issues/207403732
+            tasks.findByName("configureNdkBuildRelease")?.configure<Copy> {
+                dependsOn("preReleaseBuild")
+            }
+            tasks.findByName("configureNdkBuildDebug")?.configure<Copy> {
                 dependsOn("preDebugBuild")
             }
-            tasks.register<Copy>("configureNdkBuildRelease[${architecture}]").configure {
-                dependsOn("preReleaseBuild")
+
+            reactNativeArchitectures.forEach { architecture ->
+                tasks.findByName("configureNdkBuildDebug[${architecture}]")?.configure<Copy> {
+                    dependsOn("preDebugBuild")
+                }
+                tasks.findByName("configureNdkBuildRelease[${architecture}]")?.configure<Copy> {
+                    dependsOn("preReleaseBuild")
+                }
             }
         }
     }
 
     splits {
         abi {
-            isEnable = true
             reset()
-            include(architectures.joinToString())
+            isEnable = enableSeparateBuildPerCPUArchitecture
             isUniversalApk = false
+            include(reactNativeArchitectures.joinToString())
         }
     }
 
@@ -117,7 +153,7 @@ android {
             keyPassword = "android"
         }
         create("release") {
-            storeFile =  file("debug.keystore")
+            storeFile = file("debug.keystore")
             storePassword = "android"
             keyAlias = "androiddebugkey"
             keyPassword = "android"
@@ -130,7 +166,7 @@ android {
         }
         getByName("release") {
             signingConfig = signingConfigs.getByName("release")
-            isMinifyEnabled = true
+            isMinifyEnabled = enableProguardInReleaseBuilds
             isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -185,7 +221,7 @@ dependencies {
         debugImplementation(files("${hermesPath}hermes-debug.aar"))
         releaseImplementation(files("${hermesPath}hermes-release.aar"))
     } else {
-        implementation("org.webkit:android-jsc:+")
+        implementation(jscFlavor)
     }
 }
 
@@ -196,13 +232,15 @@ tasks.register<Copy>("copyDownloadableDepsToLibs") {
     into("libs")
 }
 
-// If new architecture is enabled, we let you build RN from source
-// Otherwise we fallback to a prebuilt .aar bundled in the NPM package.
-// This will be applied to all the imported transtitive dependency.
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
-        substitute(module("com.facebook.react:react-native"))
-            .using(project(":ReactAndroid")).because("On New Architecture we're building React Native from source")
+if (isNewArchitectureEnabled) {
+    // If new architecture is enabled, we let you build RN from source
+    // Otherwise we fallback to a prebuilt .aar bundled in the NPM package.
+    // This will be applied to all the imported transtitive dependency.
+    configurations.all {
+        resolutionStrategy.dependencySubstitution {
+            substitute(module("com.facebook.react:react-native"))
+                .using(project(":ReactAndroid")).because("On New Architecture we're building React Native from source")
+        }
     }
 }
 

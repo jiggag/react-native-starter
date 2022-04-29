@@ -2,15 +2,13 @@ import React, { useCallback } from 'react';
 import {
   Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, useColorScheme, Button,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
 export function Main() {
   const isDarkMode = useColorScheme() === 'dark';
-  const navigation = useNavigation();
 
   const onPress = useCallback(() => {
-    navigation.navigate('Detail');
-  }, [navigation]);
+    console.log('onPress');
+  }, []);
 
   return (
     <SafeAreaView>
