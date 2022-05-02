@@ -1,7 +1,6 @@
 import com.jiggag.rnstarter.Constants
 import groovy.lang.Closure
 import com.android.build.api.variant.FilterConfiguration.FilterType.*
-import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
     id("com.android.application")
@@ -52,7 +51,8 @@ android {
                         "GENERATED_SRC_DIR=$buildDir/generated/source",
                         "PROJECT_BUILD_DIR=$buildDir",
                         "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
-                        "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build"
+                        "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build",
+                        "NODE_MODULES_DIR=$rootDir/../node_modules"
                     )
 
                     cFlags += listOf(
@@ -66,14 +66,6 @@ android {
                     // Make sure this target name is the same you specify inside the
                     // src/main/jni/Android.mk file for the `LOCAL_MODULE` variable.
                     targets += listOf("rnstarter_appmodules")
-
-                    // Fix for windows limit on number of character in file paths and in command lines
-                    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-                        arguments += listOf(
-                            "NDK_OUT=${rootProject.projectDir.parent}\\.cxx",
-                            "NDK_APP_SHORT_COMMANDS=true"
-                        )
-                    }
                 }
                 if (!enableSeparateBuildPerCPUArchitecture) {
                     ndk {
@@ -217,9 +209,10 @@ dependencies {
     }
 
     if (enableHermes) {
-        val hermesPath = "../../node_modules/hermes-engine/android/"
-        debugImplementation(files("${hermesPath}hermes-debug.aar"))
-        releaseImplementation(files("${hermesPath}hermes-release.aar"))
+        //noinspection GradleDynamicVersion
+        implementation("com.facebook.react:hermes-engine:+") { // From node_modules
+            exclude group:'com.facebook.fbjni'
+        }
     } else {
         implementation(jscFlavor)
     }
@@ -239,7 +232,11 @@ if (isNewArchitectureEnabled) {
     configurations.all {
         resolutionStrategy.dependencySubstitution {
             substitute(module("com.facebook.react:react-native"))
-                .using(project(":ReactAndroid")).because("On New Architecture we're building React Native from source")
+                .using(project(":ReactAndroid"))
+                .because("On New Architecture we're building React Native from source")
+            substitute(module("com.facebook.react:hermes-engine"))
+                .using(project(":ReactAndroid:hermes-engine"))
+                .because("On New Architecture we're building Hermes from source")
         }
     }
 }
