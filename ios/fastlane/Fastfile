@@ -23,7 +23,7 @@ platform :ios do
 
   lane :beta do
     build_app(
-      scheme: "RNStarter (Staging)",
+      scheme: "RNStarter-Staging",
       export_method: "development",
     )
 
@@ -35,6 +35,9 @@ platform :ios do
   end
 
   lane :distribute do
-    build_app(scheme: "RNStarter")
+    build_app(
+      scheme: "RNStarter",
+      export_method: "app-store",
+    )
   end
 end
