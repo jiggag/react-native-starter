@@ -23,7 +23,12 @@ platform :android do
 
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
-    gradle(task: "clean assembleRelease")
+    gradle(task: "clean")
+
+    gradle(
+      task: "assemble",
+      build_type: "Release"
+    )
 
     firebase_app_distribution(
       app: ENV["FIREBASE_APP_ID_AOS"],
@@ -33,7 +38,13 @@ platform :android do
   end
 
   lane :distribute do
-    gradle(task: "clean assembleRelease")
+    gradle(task: "clean")
+
+    gradle(
+      task: "assemble",
+      build_type: "Release"
+    )
+
 #     upload_to_play_store
   end
 end
