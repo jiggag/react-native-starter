@@ -8,6 +8,8 @@ install! 'cocoapods', :deterministic_uuids => false
 target 'RNStarter' do
   config = use_native_modules!
 
+  flipper_enabled = ENV['USE_FLIPPER'] == '1'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # to enable hermes on iOS, change `false` to `true` and then install pods
@@ -26,7 +28,9 @@ target 'RNStarter' do
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
   # you should disable the next line.
-  use_flipper!({ 'Flipper' => '0.129.0' })
+  if flipper_enabled
+    use_flipper!({ 'Flipper' => '0.129.0' })
+  end
 
   post_install do |installer|
     react_native_post_install(installer)

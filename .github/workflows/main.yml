@@ -169,7 +169,7 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
 
       - name: Install pod
-        run: yarn pod
+        run: yarn pod-release
 
       - name: Deploy
         run: cd ios && bundle exec fastlane beta && cd ..
