@@ -16,7 +16,6 @@ buildscript {
         classpath("com.android.tools.build:gradle:7.1.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
         classpath("de.undercouch:gradle-download-task:5.0.1")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${com.jiggag.rnstarter.Constants.KOTLIN_VERSION}")
         classpath("com.google.gms:google-services:4.3.10")
     }
 }

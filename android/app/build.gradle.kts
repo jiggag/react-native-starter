@@ -4,8 +4,8 @@ import com.android.build.api.variant.FilterConfiguration.FilterType.*
 
 plugins {
     id("com.android.application")
-    id("kotlin-android")
     id("com.google.gms.google-services")
+    id("org.jetbrains.kotlin.android") version "1.6.10"
 }
 
 ext["react"] = mapOf(
