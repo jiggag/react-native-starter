@@ -14,4 +14,6 @@ val newArchEnabled = extra["newArchEnabled"] as String
 if (newArchEnabled == "true") {
     include(":ReactAndroid")
     project(":ReactAndroid").projectDir = file("../node_modules/react-native/ReactAndroid")
+    include(":ReactAndroid:hermes-engine")
+    project(":ReactAndroid:hermes-engine").projectDir = file("../node_modules/react-native/ReactAndroid/hermes-engine")
 }

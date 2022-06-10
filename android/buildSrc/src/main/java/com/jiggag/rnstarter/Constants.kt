@@ -15,10 +15,6 @@ private fun getNdkVersion(): String {
     return if (System.getProperty("os.arch").equals("aarch64")) {
         // For M1 Users we need to use the NDK 24 which added support for aarch64
         "24.0.8215888"
-    } else if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-        // For Android Users, we need to use NDK 23, otherwise the build will
-        // fail due to paths longer than the OS limit
-        "23.1.7779620"
     } else {
         // Otherwise we default to the side-by-side NDK version from AGP.
         "21.4.7075529"
@@ -28,7 +24,7 @@ private fun getNdkVersion(): String {
 object Constants {
     const val VERSION_CODE = 1
     const val VERSION_NAME = "0.0.1"
-    const val KOTLIN_VERSION = "1.6.0"
+    const val KOTLIN_VERSION = "1.6.10"
     const val BUILD_TOOLS_VERSION = "31.0.0"
     const val MIN_SDK_VERSION = 21
     const val COMPILE_SDK_VERSION = 31
