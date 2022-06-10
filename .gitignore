@@ -69,3 +69,4 @@ GoogleService-Info.plist
 *.dSYM.zip
 
 vendor
+.env
