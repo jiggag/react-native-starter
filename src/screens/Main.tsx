@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react';
-import {
-  Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, useColorScheme, Button,
-} from 'react-native';
+import { Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, useColorScheme, Button } from 'react-native';
 
 export function Main() {
   const isDarkMode = useColorScheme() === 'dark';
