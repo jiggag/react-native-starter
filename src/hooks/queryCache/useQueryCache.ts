@@ -1,6 +1,4 @@
-import {
-  useCallback, useEffect, useMemo, useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { QueryKey, QueryObserver, useQueryClient } from 'react-query';
 import { Updater } from 'react-query/types/core/utils';
 
@@ -12,10 +10,13 @@ export function useQueryCache<Data>(queryKey: QueryKey): QueryCache<Data> {
   const queryClient = useQueryClient();
   const [state, setState] = useState<Data>();
 
-  const setQueryCache = useCallback((updater: State<Data> | SetState<Data>) => {
-    queryClient.setQueryData<Data | undefined>(queryKey, updater);
-    setState(updater);
-  }, [queryClient, queryKey]);
+  const setQueryCache = useCallback(
+    (updater: State<Data> | SetState<Data>) => {
+      queryClient.setQueryData<Data | undefined>(queryKey, updater);
+      setState(updater);
+    },
+    [queryClient, queryKey],
+  );
 
   const queryCache = useMemo(() => {
     return state;

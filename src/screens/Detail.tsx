@@ -1,7 +1,5 @@
 import React, { useCallback } from 'react';
-import {
-  Button, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme,
-} from 'react-native';
+import { Button, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme } from 'react-native';
 import notifee, { RepeatFrequency, TimestampTrigger, TriggerType } from '@notifee/react-native';
 
 export function Detail() {
