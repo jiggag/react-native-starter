@@ -2882,10 +2882,10 @@ eslint-config-airbnb@^19.0.4:
     object.assign "^4.1.2"
     object.entries "^1.1.5"
 
-eslint-config-jiggag-rnlint@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/eslint-config-jiggag-rnlint/-/eslint-config-jiggag-rnlint-0.0.7.tgz#926ae59f49952f6bac4160df1b846dda463be752"
-  integrity sha512-vog3baTIhVegJm7nERNE9x+oZr4eGeUr2ybEmtCWk54AevP8pdKJMtLiiR9GFIB91AEY5QCQSD2g4PqIB7z+eg==
+eslint-config-jiggag-rnlint@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/eslint-config-jiggag-rnlint/-/eslint-config-jiggag-rnlint-0.0.8.tgz#0b9ebfb8ea9f9b7989858bafc0c7b55cafa48dd6"
+  integrity sha512-3P5A1nkiTy6EBGk9lCJ6XYNVRf8hICMobwBn3r2dbDXnO5Ov+q20SIdfgoqKuGL4AVcfx6zWkTu9MDNxduX1TA==
 
 eslint-config-prettier@^6.10.1:
   version "6.15.0"
