@@ -56,14 +56,7 @@ class MainApplication : Application(), ReactApplication {
     private fun initializeFlipper(context: Context, reactInstanceManager: ReactInstanceManager) {
         if (BuildConfig.DEBUG) {
             try {
-                val aClass = Class.forName("com.jiggag.rnstarter.ReactNativeFlipper")
-                aClass
-                    .getMethod(
-                        "initializeFlipper",
-                        Context::class.java,
-                        ReactInstanceManager::class.java
-                    )
-                    .invoke(null, context, reactInstanceManager)
+                ReactNativeFlipper.initializeFlipper(context, reactInstanceManager)
             } catch (e: ClassNotFoundException) {
                 e.printStackTrace()
             } catch (e: NoSuchMethodException) {

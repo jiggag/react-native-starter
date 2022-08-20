@@ -10,13 +10,13 @@
     "test": "jest --coverage",
     "lint": "eslint . --ext .js,.ts,.tsx --fix",
     "reinstall": "rm -rf node_modules && yarn install",
-    "pod": "cd ios && USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 USE_FLIPPER=1 pod install && cd ..",
-    "pod-release": "cd ios && USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 USE_FLIPPER=0 pod install && cd .."
+    "pod": "cd ios && USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 PRODUCTION=0 pod install && cd ..",
+    "pod-release": "cd ios && USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 PRODUCTION=1 pod install && cd .."
   },
   "dependencies": {
     "@notifee/react-native": "^4.0.1",
     "react": "18.0.0",
-    "react-native": "0.69.0-rc.6",
+    "react-native": "0.69.4",
     "react-query": "^3.34.8"
   },
   "devDependencies": {
