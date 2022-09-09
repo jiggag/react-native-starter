@@ -1,6 +1,7 @@
 import com.jiggag.rnstarter.Constants
 import groovy.lang.Closure
 import com.android.build.api.variant.FilterConfiguration.FilterType.*
+import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
     id("com.android.application")
@@ -42,31 +43,18 @@ android {
         buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled.toString())
 
         if (isNewArchitectureEnabled) {
+            // We configure the CMake build only if you decide to opt-in for the New Architecture.
             externalNativeBuild {
-                ndkBuild {
+                cmake {
                     arguments += listOf(
-                        "APP_PLATFORM=android-21",
-                        "APP_STL=c++_shared",
-                        "NDK_TOOLCHAIN_VERSION=clang",
-                        "GENERATED_SRC_DIR=$buildDir/generated/source",
-                        "PROJECT_BUILD_DIR=$buildDir",
-                        "REACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
-                        "REACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build",
-                        "NODE_MODULES_DIR=$rootDir/../node_modules"
+                        "-DPROJECT_BUILD_DIR=$buildDir",
+                        "-DREACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
+                        "-DREACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build",
+                        "-DNODE_MODULES_DIR=$rootDir/../node_modules",
+                        "-DANDROID_STL=c++_shared"
                     )
-
-                    cFlags += listOf(
-                        "-Wall",
-                        "-Werror",
-                        "-fexceptions",
-                        "-frtti",
-                        "-DWITH_INSPECTOR=1"
-                    )
-                    cppFlags += listOf("-std=c++17")
-                    // Make sure this target name is the same you specify inside the
-                    // src/main/jni/Android.mk file for the `LOCAL_MODULE` variable.
-                    targets += listOf("rnstarter_appmodules")
                 }
+
                 if (!enableSeparateBuildPerCPUArchitecture) {
                     ndk {
                         abiFilters += reactNativeArchitectures.joinToString()
@@ -78,8 +66,8 @@ android {
 
     if (isNewArchitectureEnabled) {
         externalNativeBuild {
-            ndkBuild {
-                path = file("$projectDir/src/main/jni/Android.mk")
+            cmake {
+                path = file("$projectDir/src/main/jni/CMakeLists.txt")
             }
         }
 
@@ -108,20 +96,20 @@ android {
                 dependsOn(packageReactNdkReleaseLibs)
             }
             // Due to a bug inside AGP, we have to explicitly set a dependency
-            // between configureNdkBuild* tasks and the preBuild tasks.
+            // between configureCMakeDebug* tasks and the preBuild tasks.
             // This can be removed once this is solved: https://issuetracker.google.com/issues/207403732
-            tasks.findByName("configureNdkBuildRelease")?.configure<Copy> {
+            tasks.findByName("configureCMakeRelWithDebInfo")?.configure<Copy> {
                 dependsOn("preReleaseBuild")
             }
-            tasks.findByName("configureNdkBuildDebug")?.configure<Copy> {
+            tasks.findByName("configureCMakeDebug")?.configure<Copy> {
                 dependsOn("preDebugBuild")
             }
 
             reactNativeArchitectures.forEach { architecture ->
-                tasks.findByName("configureNdkBuildDebug[${architecture}]")?.configure<Copy> {
+                tasks.findByName("configureCMakeDebug[${architecture}]")?.configure<Copy> {
                     dependsOn("preDebugBuild")
                 }
-                tasks.findByName("configureNdkBuildRelease[${architecture}]")?.configure<Copy> {
+                tasks.findByName("configureCMakeRelWithDebInfo[${architecture}]")?.configure<Copy> {
                     dependsOn("preReleaseBuild")
                 }
             }
