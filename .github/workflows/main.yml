@@ -8,7 +8,7 @@ on:
 
 env:
   NODE_VERSION: 16
-  RUBY_VERSION: 2.7.4
+  RUBY_VERSION: 2.7.5
 
 jobs:
   verification:
