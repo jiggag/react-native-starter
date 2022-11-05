@@ -32,6 +32,15 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    // TODO 임시 대응
+    packagingOptions {
+        jniLibs.pickFirsts.addAll(
+            listOf(
+                "**/*.so"
+            )
+        )
+    }
+
     defaultConfig {
         applicationId = "com.jiggag.rnstarter"
         minSdk = Constants.MIN_SDK_VERSION
@@ -40,7 +49,11 @@ android {
         versionName = Constants.VERSION_NAME
         multiDexEnabled = true
         manifestPlaceholders += mutableMapOf()
-        buildConfigField("boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled.toString())
+        buildConfigField(
+            "boolean",
+            "IS_NEW_ARCHITECTURE_ENABLED",
+            isNewArchitectureEnabled.toString()
+        )
 
         if (isNewArchitectureEnabled) {
             // We configure the CMake build only if you decide to opt-in for the New Architecture.
