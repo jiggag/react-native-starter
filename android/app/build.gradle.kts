@@ -5,23 +5,90 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 plugins {
     id("com.android.application")
+    id("com.facebook.react")
     id("com.google.gms.google-services")
     id("org.jetbrains.kotlin.android") version "1.6.10"
 }
 
-ext["react"] = mapOf(
-    "entryFile" to "index.js",
-    "enableHermes" to true
-)
+/**
+ * This is the configuration block to customize your React Native Android app.
+ * By default you don't need to apply any configuration, just uncomment the lines you need.
+ */
+react {
+    /* Folders */
+    //   The root of your project, i.e. where "package.json" lives. Default is '..'
+    // root = file("../")
+    //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
+    // reactNativeDir = file("../node-modules/react-native")
+    //   The folder where the react-native Codegen package is. Default is ../node_modules/react-native-codegen
+    // codegenDir = file("../node-modules/react-native-codegen")
+    //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
+    // cliFile = file("../node_modules/react-native/cli.js")
+    /* Variants */
+    //   The list of variants to that are debuggable. For those we're going to
+    //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
+    //   If you add flavors like lite, prod, etc. you'll have to list your debuggableVariants.
+    // debuggableVariants = ["liteDebug", "prodDebug"]
+    /* Bundling */
+    //   A list containing the node command and its flags. Default is just 'node'.
+    // nodeExecutableAndArgs = ["node"]
+    //
+    //   The command to run when bundling. By default is 'bundle'
+    // bundleCommand = "ram-bundle"
+    //
+    //   The path to the CLI configuration file. Default is empty.
+    // bundleConfig = file(../rn-cli.config.js)
+    //
+    //   The name of the generated asset file containing your JS bundle
+    // bundleAssetName = "MyApplication.android.bundle"
+    //
+    //   The entry file for bundle generation. Default is 'index.android.js' or 'index.js'
+    // entryFile = file("../js/MyApplication.android.js")
+    //
+    //   A list of extra flags to pass to the 'bundle' commands.
+    //   See https://github.com/react-native-community/cli/blob/main/docs/commands.md#bundle
+    // extraPackagerArgs = []
+    /* Hermes Commands */
+    //   The hermes compiler command to run. By default it is 'hermesc'
+    // hermesCommand = "$rootDir/my-custom-hermesc/bin/hermesc"
+    //
+    //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
+    // hermesFlags = ["-O", "-output-source-map"]
+}
 
-apply(from = "../../node_modules/react-native/react.gradle")
-
+/**
+ * Set this to true to create four separate APKs instead of one,
+ * one for each native architecture. This is useful if you don't
+ * use App Bundles (https://developer.android.com/guide/app-bundle/)
+ * and want to have separate APKs to upload to the Play Store.
+ */
 val enableSeparateBuildPerCPUArchitecture = true
+
+/**
+ * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
+ */
 val enableProguardInReleaseBuilds = true
+
+/**
+ * The preferred build flavor of JavaScriptCore (JSC)
+ *
+ * For example, to use the international variant, you can use:
+ * `def jscFlavor = 'org.webkit:android-jsc-intl:+'`
+ *
+ * The international variant includes ICU i18n library and necessary data
+ * allowing to use e.g. `Date.toLocaleString` and `String.localeCompare` that
+ * give correct results when using with locales other than en-US. Note that
+ * this variant is about 6MiB larger per architecture than default.
+ */
 val jscFlavor = "org.webkit:android-jsc:+"
-val enableHermes = (ext["react"] as Map<*, *>)["enableHermes"] as Boolean
+
+/**
+ * Private function to get the list of Native Architectures you want to build.
+ * This reads the value from reactNativeArchitectures in your gradle.properties
+ * file and works together with the --active-arch-only flag of react-native run-android.
+ */
 val reactNativeArchitectures = Constants.REACT_NATIVE_ARCHITECTURES.split(",")
-val isNewArchitectureEnabled = Constants.NEW_ARCH_ENABLED === "true"
+val hermesEnabled = Constants.HERMES_ENABLED === "true"
 
 android {
     compileSdk = Constants.COMPILE_SDK_VERSION
@@ -32,14 +99,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
-    // TODO 임시 대응
-    packagingOptions {
-        jniLibs.pickFirsts.addAll(
-            listOf(
-                "**/*.so"
-            )
-        )
-    }
+    namespace = "com.jiggag.rnstarter"
 
     defaultConfig {
         applicationId = "com.jiggag.rnstarter"
@@ -49,84 +109,6 @@ android {
         versionName = Constants.VERSION_NAME
         multiDexEnabled = true
         manifestPlaceholders += mutableMapOf()
-        buildConfigField(
-            "boolean",
-            "IS_NEW_ARCHITECTURE_ENABLED",
-            isNewArchitectureEnabled.toString()
-        )
-
-        if (isNewArchitectureEnabled) {
-            // We configure the CMake build only if you decide to opt-in for the New Architecture.
-            externalNativeBuild {
-                cmake {
-                    arguments += listOf(
-                        "-DPROJECT_BUILD_DIR=$buildDir",
-                        "-DREACT_ANDROID_DIR=$rootDir/../node_modules/react-native/ReactAndroid",
-                        "-DREACT_ANDROID_BUILD_DIR=$rootDir/../node_modules/react-native/ReactAndroid/build",
-                        "-DNODE_MODULES_DIR=$rootDir/../node_modules",
-                        "-DANDROID_STL=c++_shared"
-                    )
-                }
-
-                if (!enableSeparateBuildPerCPUArchitecture) {
-                    ndk {
-                        abiFilters += reactNativeArchitectures.joinToString()
-                    }
-                }
-            }
-        }
-    }
-
-    if (isNewArchitectureEnabled) {
-        externalNativeBuild {
-            cmake {
-                path = file("$projectDir/src/main/jni/CMakeLists.txt")
-            }
-        }
-
-        val reactAndroidProjectDir = project(":ReactAndroid").projectDir
-        val packageReactNdkDebugLibs = tasks.register<Copy>("packageReactNdkDebugLibs") {
-            dependsOn(":ReactAndroid:packageReactNdkDebugLibsForBuck")
-            from("$reactAndroidProjectDir/src/main/jni/prebuilt/lib")
-            into("$buildDir/react-ndk/exported")
-        }
-        val packageReactNdkReleaseLibs = tasks.register<Copy>("packageReactNdkReleaseLibs") {
-            dependsOn(":ReactAndroid:packageReactNdkReleaseLibsForBuck")
-            from("$reactAndroidProjectDir/src/main/jni/prebuilt/lib")
-            into("$buildDir/react-ndk/exported")
-        }
-
-        afterEvaluate {
-            // If you wish to add a custom TurboModule or component locally,
-            // you should uncomment this line.
-//            tasks.findByName("preBuild")?.configure<Copy> {
-//                dependsOn("generateCodegenArtifactsFromSchema")
-//            }
-            tasks.findByName("preDebugBuild")?.configure<Copy> {
-                dependsOn(packageReactNdkDebugLibs)
-            }
-            tasks.findByName("preReleaseBuild")?.configure<Copy> {
-                dependsOn(packageReactNdkReleaseLibs)
-            }
-            // Due to a bug inside AGP, we have to explicitly set a dependency
-            // between configureCMakeDebug* tasks and the preBuild tasks.
-            // This can be removed once this is solved: https://issuetracker.google.com/issues/207403732
-            tasks.findByName("configureCMakeRelWithDebInfo")?.configure<Copy> {
-                dependsOn("preReleaseBuild")
-            }
-            tasks.findByName("configureCMakeDebug")?.configure<Copy> {
-                dependsOn("preDebugBuild")
-            }
-
-            reactNativeArchitectures.forEach { architecture ->
-                tasks.findByName("configureCMakeDebug[${architecture}]")?.configure<Copy> {
-                    dependsOn("preDebugBuild")
-                }
-                tasks.findByName("configureCMakeRelWithDebInfo[${architecture}]")?.configure<Copy> {
-                    dependsOn("preReleaseBuild")
-                }
-            }
-        }
     }
 
     splits {
@@ -189,56 +171,25 @@ androidComponents {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to "*.jar")))
-    implementation("com.facebook.react:react-native:+")  // From node_modules
+    // The version of react-native is set by the React Native Gradle Plugin
+    implementation("com.facebook.react:react-native")
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
     implementation("com.google.firebase:firebase-bom:29.0.4")
 
-    debugImplementation("com.facebook.flipper:flipper:${Constants.FLIPPER_VERSION}") {
-        exclude(group = "com.facebook.fbjni")
-    }
+    debugImplementation("com.facebook.flipper:flipper:${Constants.FLIPPER_VERSION}")
 
     debugImplementation("com.facebook.flipper:flipper-network-plugin:${Constants.FLIPPER_VERSION}") {
-        exclude(group = "com.facebook.flipper")
         exclude(group = "com.squareup.okhttp3", module = "okhttp")
     }
 
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${Constants.FLIPPER_VERSION}") {
-        exclude(group = "com.facebook.flipper")
-    }
+    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${Constants.FLIPPER_VERSION}")
 
-    if (enableHermes) {
-        //noinspection GradleDynamicVersion
-        implementation("com.facebook.react:hermes-engine:+") { // From node_modules
-            exclude(group = "com.facebook.fbjni")
-        }
+    if (hermesEnabled) {
+        implementation("com.facebook.react:hermes-engine")
     } else {
         implementation(jscFlavor)
-    }
-}
-
-// Run this once to be able to run the application with BUCK
-// puts all compile dependencies into folder libs for BUCK to use
-tasks.register<Copy>("copyDownloadableDepsToLibs") {
-    from(configurations.implementation)
-    into("libs")
-}
-
-if (isNewArchitectureEnabled) {
-    // If new architecture is enabled, we let you build RN from source
-    // Otherwise we fallback to a prebuilt .aar bundled in the NPM package.
-    // This will be applied to all the imported transtitive dependency.
-    configurations.all {
-        resolutionStrategy.dependencySubstitution {
-            substitute(module("com.facebook.react:react-native"))
-                .using(project(":ReactAndroid"))
-                .because("On New Architecture we're building React Native from source")
-            substitute(module("com.facebook.react:hermes-engine"))
-                .using(project(":ReactAndroid:hermes-engine"))
-                .because("On New Architecture we're building Hermes from source")
-        }
     }
 }
 

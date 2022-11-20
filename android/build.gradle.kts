@@ -13,9 +13,8 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:7.2.1")
+        classpath("com.android.tools.build:gradle:7.3.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("de.undercouch:gradle-download-task:5.0.1")
         classpath("com.google.gms:google-services:4.3.10")
     }
 }
@@ -27,14 +26,7 @@ allprojects {
         // Android JSC is installed from npm
         maven("$rootDir/../node_modules/jsc-android/dist")
 
-        mavenCentral {
-            // We don't want to fetch react-native from Maven Central as there are
-            // older versions over there.
-            content {
-                excludeGroup("com.facebook.react")
-            }
-        }
-
+        mavenCentral()
         google()
         maven("https://jitpack.io")
 

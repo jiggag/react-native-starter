@@ -2,23 +2,12 @@ package com.jiggag.rnstarter
 
 import java.io.FileInputStream
 import java.util.Properties
-import org.apache.tools.ant.taskdefs.condition.Os
 
 private fun getProperty(key: String): String {
     val properties = Properties()
     properties.load(FileInputStream("gradle.properties"))
 
     return properties.getProperty(key)
-}
-
-private fun getNdkVersion(): String {
-    return if (System.getProperty("os.arch").equals("aarch64")) {
-        // For M1 Users we need to use the NDK 24 which added support for aarch64
-        "24.0.8215888"
-    } else {
-        // Otherwise we default to the side-by-side NDK version from AGP.
-        "21.4.7075529"
-    }
 }
 
 object Constants {
@@ -29,8 +18,8 @@ object Constants {
     const val MIN_SDK_VERSION = 21
     const val COMPILE_SDK_VERSION = 31
     const val TARGET_SDK_VERSION = 31
-    val NDK_VERSION = getNdkVersion()
+    val NDK_VERSION = "23.1.7779620"
     val FLIPPER_VERSION = getProperty("FLIPPER_VERSION")
     val REACT_NATIVE_ARCHITECTURES = getProperty("reactNativeArchitectures")
-    val NEW_ARCH_ENABLED = getProperty("newArchEnabled")
+    val HERMES_ENABLED = getProperty("hermesEnabled")
 }
