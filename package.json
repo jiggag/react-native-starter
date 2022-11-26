@@ -10,7 +10,8 @@
     "test": "jest --coverage",
     "lint": "eslint . --ext .js,.ts,.tsx --fix",
     "reinstall": "rm -rf node_modules && yarn install",
-    "pod": "cd ios && USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 pod install && cd .."
+    "pod": "USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 pod install",
+    "pod-update": "USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 pod update"
   },
   "dependencies": {
     "@notifee/react-native": "^4.0.1",
