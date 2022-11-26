@@ -1,7 +1,6 @@
 import com.jiggag.rnstarter.Constants
 import groovy.lang.Closure
-import com.android.build.api.variant.FilterConfiguration.FilterType.*
-import org.apache.tools.ant.taskdefs.condition.Os
+import com.android.build.api.variant.FilterConfiguration.FilterType.ABI
 
 plugins {
     id("com.android.application")
@@ -172,7 +171,7 @@ androidComponents {
 
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
-    implementation("com.facebook.react:react-native")
+    implementation("com.facebook.react:react-android")
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
@@ -187,7 +186,7 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${Constants.FLIPPER_VERSION}")
 
     if (hermesEnabled) {
-        implementation("com.facebook.react:hermes-engine")
+        implementation("com.facebook.react:hermes-android")
     } else {
         implementation(jscFlavor)
     }

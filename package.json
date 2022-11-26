@@ -10,21 +10,21 @@
     "test": "jest --coverage",
     "lint": "eslint . --ext .js,.ts,.tsx --fix",
     "reinstall": "rm -rf node_modules && yarn install",
-    "pod": "cd ios && USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 pod install && cd ..",
-    "pod-release": "cd ios && USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 pod install && cd .."
+    "pod": "cd ios && USE_FABRIC=1 RCT_NEW_ARCH_ENABLED=1 pod install && cd .."
   },
   "dependencies": {
     "@notifee/react-native": "^4.0.1",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.8.0",
     "react": "18.2.0",
-    "react-native": "0.71.0-rc.0",
+    "react-native": "0.71.0-rc.1",
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.0",
     "react-query": "^3.34.8"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.14.0",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^3.0.0",
     "@tsconfig/react-native": "^2.0.2",
@@ -57,11 +57,11 @@
     "flipper-plugin-react-query-native-devtools": "^3.0.0",
     "jest": "^29.2.1",
     "metro-react-native-babel-preset": "0.73.3",
-    "react-test-renderer": "18.2.0",
     "react-native-flipper": "^0.129.0",
     "react-query-native-devtools": "^3.0.2",
-    "react-test-renderer": "18.1.0",
-    "typescript": "^4.8.3"
+    "prettier": "^2.4.1",
+    "react-test-renderer": "18.2.0",
+    "typescript": "4.8.4"
   },
   "jest": {
     "preset": "react-native"
