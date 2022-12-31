@@ -4,8 +4,11 @@ import { render } from '@testing-library/react-native';
 import { App } from '../src/App';
 
 jest.mock('@notifee/react-native', () => ({
-  requestPermission: jest.fn(),
+  requestPermission: jest.fn(() => ({
+    authorizationStatus: jest.fn(),
+  })),
   onForegroundEvent: jest.fn(),
+  IOSAuthorizationStatus: jest.fn(),
 }));
 
 it('renders correctly', () => {
