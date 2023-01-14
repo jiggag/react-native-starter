@@ -23,4 +23,15 @@ allprojects {
     repositories {
         maven("$rootDir/../node_modules/@notifee/react-native/android/libs")
     }
+
+    configurations.all {
+        resolutionStrategy.dependencySubstitution {
+            substitute(project(":ReactAndroid"))
+                .using(module("com.facebook.react:react-android:0.71.0"))
+                .because("On New Architecture we're building React Native no longer builds from source")
+            substitute(project(":ReactAndroid:hermes-engine"))
+                .using(module("com.facebook.react:hermes-android:0.71.0"))
+                .because("On New Architecture we're building Hermes no longer builds from source")
+        }
+    }
 }
