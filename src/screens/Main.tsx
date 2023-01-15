@@ -1,14 +1,12 @@
 import React, { useCallback } from 'react';
 import { Text, SafeAreaView, ScrollView, StatusBar, StyleSheet, useColorScheme, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { NativeScreenProps, StackScreen } from 'constants/navigation';
 
-export function Main() {
+export function Main({ navigation }: NativeScreenProps<StackScreen.Main>) {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const navigation = useNavigation();
-
   const onPress = useCallback(() => {
-    navigation.navigate('Detail');
+    navigation.push(StackScreen.Detail);
   }, [navigation]);
 
   return (

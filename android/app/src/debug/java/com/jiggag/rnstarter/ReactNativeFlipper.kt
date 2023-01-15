@@ -22,6 +22,10 @@ import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactInstanceManager.ReactInstanceEventListener
 import com.facebook.flipper.plugins.fresco.FrescoFlipperPlugin
 
+/**
+ * Class responsible of loading Flipper inside your React Native application. This is the debug
+ * flavor of it. Here you can add your own plugins and customize the Flipper setup.
+ */
 object ReactNativeFlipper {
     fun initializeFlipper(context: Context?, reactInstanceManager: ReactInstanceManager) {
         if (FlipperUtils.shouldEnableFlipper(context)) {
