@@ -3,6 +3,7 @@ import notifee, { EventType, IOSAuthorizationStatus } from '@notifee/react-nativ
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { NativeStackParams, StackScreen } from 'constants/navigation';
 import { Detail } from 'screens/Detail';
 import { Main } from 'screens/Main';
 
@@ -21,7 +22,7 @@ if (__DEV__) {
     });
 }
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<NativeStackParams>();
 
 export function App() {
   const checkApplicationPermission = useCallback(async () => {
@@ -54,8 +55,8 @@ export function App() {
     <QueryClientProvider client={queryClient}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Main" component={Main} />
-          <Stack.Screen name="Detail" component={Detail} />
+          <Stack.Screen name={StackScreen.Main} component={Main} />
+          <Stack.Screen name={StackScreen.Detail} component={Detail} />
         </Stack.Navigator>
       </NavigationContainer>
     </QueryClientProvider>

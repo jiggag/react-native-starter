@@ -1,12 +1,10 @@
 import React, { useCallback } from 'react';
 import { Button, SafeAreaView, ScrollView, StatusBar, StyleSheet, Text, useColorScheme } from 'react-native';
 import notifee, { RepeatFrequency, TimestampTrigger, TriggerType } from '@notifee/react-native';
-import { useNavigation } from '@react-navigation/native';
+import { NativeScreenProps, StackScreen } from 'constants/navigation';
 
-export function Detail() {
+export function Detail({ navigation }: NativeScreenProps<StackScreen.Detail>) {
   const isDarkMode = useColorScheme() === 'dark';
-
-  const navigation = useNavigation();
 
   const onPress = useCallback(() => {
     navigation.goBack();
