@@ -16,10 +16,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: node-cache
         with:
           path: '**/node_modules'
@@ -47,9 +47,9 @@ jobs:
       FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -59,7 +59,7 @@ jobs:
           bundler-cache: false
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: node-cache
         with:
           path: '**/node_modules'
@@ -67,7 +67,7 @@ jobs:
           restore-keys: ${{ runner.os }}-modules-
 
       - name: Cache bundle
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ env.RUBY_VERSION }}-${{ hashFiles('**/Gemfile.lock') }}
@@ -103,9 +103,9 @@ jobs:
       FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -115,7 +115,7 @@ jobs:
           bundler-cache: false
 
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: node-cache
         with:
           path: '**/node_modules'
@@ -123,7 +123,7 @@ jobs:
           restore-keys: ${{ runner.os }}-modules-
 
       - name: Cache bundle
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ env.RUBY_VERSION }}-${{ hashFiles('**/Gemfile.lock') }}
