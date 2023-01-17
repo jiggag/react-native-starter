@@ -1,6 +1,6 @@
 {
   "name": "react-native-starter",
-  "version": "0.0.5-rc.0",
+  "version": "0.0.5-rc.2",
   "description": "React Native Starter",
   "private": true,
   "scripts": {
@@ -10,8 +10,8 @@
     "test": "jest --coverage",
     "lint": "eslint . --ext .js,.ts,.tsx --fix",
     "reinstall": "rm -rf node_modules && yarn install",
-    "pod": "RCT_NEW_ARCH_ENABLED=1 pod install",
-    "pod-update": "RCT_NEW_ARCH_ENABLED=1 pod update"
+    "pod": "cd ios && RCT_NEW_ARCH_ENABLED=1 pod install && cd ..",
+    "pod-update": "cd ios && RCT_NEW_ARCH_ENABLED=1 pod update && cd .."
   },
   "dependencies": {
     "@notifee/react-native": "^4.0.1",
