@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - feature/**
+      - release/**
 
 env:
   NODE_VERSION: 16
