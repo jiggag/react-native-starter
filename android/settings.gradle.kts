@@ -9,6 +9,3 @@ applyNativeModules(settings)
 include(":app")
 
 includeBuild("../node_modules/react-native-gradle-plugin")
-
-include(":ReactAndroid")
-include(":ReactAndroid:hermes-engine")
