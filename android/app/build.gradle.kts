@@ -87,7 +87,7 @@ val jscFlavor = "org.webkit:android-jsc:+"
  * file and works together with the --active-arch-only flag of react-native run-android.
  */
 val reactNativeArchitectures = Constants.REACT_NATIVE_ARCHITECTURES.split(",")
-val hermesEnabled = Constants.HERMES_ENABLED === "true"
+val hermesEnabled = Constants.HERMES_ENABLED == "true"
 
 android {
     compileSdk = Constants.COMPILE_SDK_VERSION
