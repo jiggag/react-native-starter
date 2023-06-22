@@ -1,7 +1,10 @@
 import 'react-native';
 import React from 'react';
+import { it } from '@jest/globals';
 import { render } from '@testing-library/react-native';
 import { App } from '../src/App';
+
+// Note: import explicitly to use the types shiped with jest.
 
 jest.mock('@notifee/react-native', () => ({
   requestPermission: jest.fn(() => ({
