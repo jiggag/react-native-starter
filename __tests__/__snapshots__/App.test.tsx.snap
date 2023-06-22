@@ -21,7 +21,6 @@ exports[`renders correctly 1`] = `
   >
     <RNSScreen
       collapsable={false}
-      forwardedRef={[Function]}
       gestureResponseDistance={
         {
           "bottom": -1,
