@@ -70,3 +70,6 @@ GoogleService-Info.plist
 
 vendor
 .env
+
+# testing
+/coverage

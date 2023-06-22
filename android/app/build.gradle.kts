@@ -19,8 +19,8 @@ react {
     // root = file("../")
     //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
     // reactNativeDir = file("../node_modules/react-native")
-    //   The folder where the react-native Codegen package is. Default is ../node_modules/react-native-codegen
-    // codegenDir = file("../node_modules/react-native-codegen")
+    //   The folder where the react-native Codegen package is. Default is ../node_modules/@react-native/codegen
+    // codegenDir = file("../node_modules/@react-native/codegen")
     //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
     // cliFile = file("../node_modules/react-native/cli.js")
     /* Variants */
@@ -56,14 +56,6 @@ react {
 }
 
 /**
- * Set this to true to create four separate APKs instead of one,
- * one for each native architecture. This is useful if you don't
- * use App Bundles (https://developer.android.com/guide/app-bundle/)
- * and want to have separate APKs to upload to the Play Store.
- */
-val enableSeparateBuildPerCPUArchitecture = true
-
-/**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
 val enableProguardInReleaseBuilds = true
@@ -81,12 +73,6 @@ val enableProguardInReleaseBuilds = true
  */
 val jscFlavor = "org.webkit:android-jsc:+"
 
-/**
- * Private function to get the list of Native Architectures you want to build.
- * This reads the value from reactNativeArchitectures in your gradle.properties
- * file and works together with the --active-arch-only flag of react-native run-android.
- */
-val reactNativeArchitectures = Constants.REACT_NATIVE_ARCHITECTURES.split(",")
 val hermesEnabled = Constants.HERMES_ENABLED == "true"
 
 android {
@@ -108,15 +94,6 @@ android {
         versionName = Constants.VERSION_NAME
         multiDexEnabled = true
         manifestPlaceholders += mutableMapOf()
-    }
-
-    splits {
-        abi {
-            reset()
-            isEnable = enableSeparateBuildPerCPUArchitecture
-            isUniversalApk = false
-            include(reactNativeArchitectures.joinToString())
-        }
     }
 
     signingConfigs {
@@ -150,31 +127,11 @@ android {
     }
 }
 
-val abiCodes = mapOf(
-    "armeabi-v7a" to 1,
-    "x86" to 2,
-    "arm64-v8a" to 3,
-    "x86_64" to 4
-)
-
-androidComponents {
-    onVariants { variant ->
-        variant.outputs.forEach { output ->
-            val name = output.filters.find { it.filterType == ABI }?.identifier
-            val baseAbiCode = abiCodes[name]
-            if (baseAbiCode != null) {
-                output.versionCode.set(baseAbiCode + (output.versionCode.get() ?: 0).times(1000))
-            }
-        }
-    }
-}
-
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
     implementation("com.google.firebase:firebase-bom:29.0.4")
 
     debugImplementation("com.facebook.flipper:flipper:${Constants.FLIPPER_VERSION}")
