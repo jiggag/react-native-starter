@@ -1087,7 +1087,7 @@ PODS:
     - RNNotifee/NotifeeCore (= 4.1.0)
   - RNNotifee/NotifeeCore (4.1.0):
     - React-Core
-  - RNScreens (3.19.0):
+  - RNScreens (3.22.0):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -1095,8 +1095,8 @@ PODS:
     - React-Codegen
     - React-RCTFabric
     - ReactCommon/turbomodule/core
-    - RNScreens/common (= 3.19.0)
-  - RNScreens/common (3.19.0):
+    - RNScreens/common (= 3.22.0)
+  - RNScreens/common (3.22.0):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -1351,7 +1351,7 @@ SPEC CHECKSUMS:
   React-utils: c12d2e75c8bbc727939ddc4319ed95493395ed5a
   ReactCommon: 517b45ed311ba9146aa8b55a8ef6617425f7448e
   RNNotifee: f1ba270897bd7491f889a1a257d0c038a43376f7
-  RNScreens: a838934f2f0d915c8a756409d674a862b70b1677
+  RNScreens: 9d61ea7595ba14c8ef38c010e1e918bcc51fc5c3
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 1d6727ed193122f6adaf435c3de1a768326ff83b
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
