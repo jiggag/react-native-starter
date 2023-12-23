@@ -6,7 +6,7 @@ plugins {
     id("com.android.application")
     id("com.facebook.react")
     id("com.google.gms.google-services")
-    id("org.jetbrains.kotlin.android") version "1.6.10"
+    id("org.jetbrains.kotlin.android")
 }
 
 /**
@@ -78,6 +78,7 @@ val hermesEnabled = Constants.HERMES_ENABLED == "true"
 android {
     compileSdk = Constants.COMPILE_SDK_VERSION
     ndkVersion = Constants.NDK_VERSION
+    buildToolsVersion = Constants.BUILD_TOOLS_VERSION
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -133,14 +134,7 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("com.google.firebase:firebase-bom:29.0.4")
-
-    debugImplementation("com.facebook.flipper:flipper:${Constants.FLIPPER_VERSION}")
-
-    debugImplementation("com.facebook.flipper:flipper-network-plugin:${Constants.FLIPPER_VERSION}") {
-        exclude(group = "com.squareup.okhttp3", module = "okhttp")
-    }
-
-    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${Constants.FLIPPER_VERSION}")
+    implementation("com.facebook.react:flipper-integration")
 
     if (hermesEnabled) {
         implementation("com.facebook.react:hermes-android")
