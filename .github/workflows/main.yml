@@ -10,6 +10,7 @@ on:
 env:
   NODE_VERSION: 18
   RUBY_VERSION: 2.7.6
+  JAVA_VERSION: 17
 
 jobs:
   verification:
@@ -53,6 +54,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
 
       - uses: ruby/setup-ruby@v1
         with:
