@@ -8,7 +8,7 @@ on:
       - release/**
 
 env:
-  NODE_VERSION: 16
+  NODE_VERSION: 18
   RUBY_VERSION: 2.7.6
 
 jobs:
