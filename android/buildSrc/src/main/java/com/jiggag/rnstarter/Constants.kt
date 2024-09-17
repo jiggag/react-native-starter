@@ -13,12 +13,12 @@ private fun getProperty(key: String): String {
 object Constants {
     const val VERSION_CODE = 1
     const val VERSION_NAME = "0.0.1"
-    const val KOTLIN_VERSION = "1.8.0"
+    const val KOTLIN_VERSION = "1.9.24"
     const val BUILD_TOOLS_VERSION = "34.0.0"
-    const val MIN_SDK_VERSION = 21
+    const val MIN_SDK_VERSION = 23
     const val COMPILE_SDK_VERSION = 34
     const val TARGET_SDK_VERSION = 34
-    val NDK_VERSION = "25.1.8937393"
+    val NDK_VERSION = "26.1.10909125"
     val REACT_NATIVE_ARCHITECTURES = getProperty("reactNativeArchitectures")
     val HERMES_ENABLED = getProperty("hermesEnabled")
 }

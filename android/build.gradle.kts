@@ -5,6 +5,7 @@ extra["minSdkVersion"] = Constants.MIN_SDK_VERSION
 extra["compileSdkVersion"] = Constants.COMPILE_SDK_VERSION
 extra["targetSdkVersion"] = Constants.TARGET_SDK_VERSION
 extra["ndkVersion"] = Constants.NDK_VERSION
+extra["kotlinVersion"] = Constants.KOTLIN_VERSION
 
 buildscript {
     repositories {
