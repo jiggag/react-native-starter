@@ -1,6 +1,4 @@
 import com.jiggag.rnstarter.Constants
-import groovy.lang.Closure
-import com.android.build.api.variant.FilterConfiguration.FilterType.ABI
 
 plugins {
     id("com.android.application")
@@ -15,14 +13,14 @@ plugins {
  */
 react {
     /* Folders */
-    //   The root of your project, i.e. where "package.json" lives. Default is '..'
-    // root = file("../")
-    //   The folder where the react-native NPM package is. Default is ../node_modules/react-native
-    // reactNativeDir = file("../node_modules/react-native")
-    //   The folder where the react-native Codegen package is. Default is ../node_modules/@react-native/codegen
-    // codegenDir = file("../node_modules/@react-native/codegen")
-    //   The cli.js file which is the React Native CLI entrypoint. Default is ../node_modules/react-native/cli.js
-    // cliFile = file("../node_modules/react-native/cli.js")
+    //   The root of your project, i.e. where "package.json" lives. Default is '../..'
+    // root = file("../../")
+    //   The folder where the react-native NPM package is. Default is ../../node_modules/react-native
+    // reactNativeDir = file("../../node_modules/react-native")
+    //   The folder where the react-native Codegen package is. Default is ../../node_modules/@react-native/codegen
+    // codegenDir = file("../../node_modules/@react-native/codegen")
+    //   The cli.js file which is the React Native CLI entrypoint. Default is ../../node_modules/react-native/cli.js
+    // cliFile = file("../../node_modules/react-native/cli.js")
     /* Variants */
     //   The list of variants to that are debuggable. For those we're going to
     //   skip the bundling of the JS bundle and the assets. By default is just 'debug'.
@@ -53,6 +51,9 @@ react {
     //
     //   The list of flags to pass to the Hermes compiler. By default is "-O", "-output-source-map"
     // hermesFlags = ["-O", "-output-source-map"]
+
+    /* Autolinking */
+    autolinkLibrariesWithApp()
 }
 
 /**
@@ -134,7 +135,6 @@ dependencies {
     implementation("androidx.multidex:multidex:2.0.1")
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("com.google.firebase:firebase-bom:29.0.4")
-    implementation("com.facebook.react:flipper-integration")
 
     if (hermesEnabled) {
         implementation("com.facebook.react:hermes-android")
@@ -142,9 +142,3 @@ dependencies {
         implementation(jscFlavor)
     }
 }
-
-// React Native
-apply(from = "../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
-
-val applyNativeModulesAppBuildGradle: Closure<Any> by ext
-applyNativeModulesAppBuildGradle(project)

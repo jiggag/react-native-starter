@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import notifee, { EventType, IOSAuthorizationStatus } from '@notifee/react-native';
+import notifee, { EventType, AuthorizationStatus } from '@notifee/react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -9,25 +9,12 @@ import { Main } from 'screens/Main';
 
 const queryClient = new QueryClient();
 
-if (__DEV__) {
-  // eslint-disable-next-line import/no-extraneous-dependencies
-  import('react-query-native-devtools')
-    .then(({ addPlugin }) => {
-      addPlugin({ queryClient });
-
-      return true;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-}
-
 const Stack = createNativeStackNavigator<NativeStackParams>();
 
 export function App() {
   const checkApplicationPermission = useCallback(async () => {
     const settings = await notifee.requestPermission();
-    if (settings.authorizationStatus >= IOSAuthorizationStatus.AUTHORIZED) {
+    if (settings.authorizationStatus >= AuthorizationStatus.AUTHORIZED) {
       console.log('Permission settings:', settings);
     } else {
       console.log('User declined permissions');

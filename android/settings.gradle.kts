@@ -1,10 +1,16 @@
-import groovy.lang.Closure
+pluginManagement {
+    includeBuild("../node_modules/@react-native/gradle-plugin")
+}
+
+plugins {
+    id("com.facebook.react.settings")
+}
+
+configure<com.facebook.react.ReactSettingsExtension> {
+    autolinkLibrariesFromCommand()
+}
 
 rootProject.name = "RNStarter"
-
-apply(from = "../node_modules/@react-native-community/cli-platform-android/native_modules.gradle")
-val applyNativeModules: Closure<Any> = extra.get("applyNativeModulesSettingsGradle") as Closure<Any>
-applyNativeModules(settings)
 
 include(":app")
 

@@ -11,7 +11,7 @@ jest.mock('@notifee/react-native', () => ({
     authorizationStatus: jest.fn(),
   })),
   onForegroundEvent: jest.fn(),
-  IOSAuthorizationStatus: jest.fn(),
+  AuthorizationStatus: jest.fn(),
 }));
 
 it('renders correctly', () => {
