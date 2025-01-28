@@ -39,6 +39,7 @@
 		63CD7A945C7F5C01F0877563 /* Pods-RNStarter.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RNStarter.staging.xcconfig"; path = "Target Support Files/Pods-RNStarter/Pods-RNStarter.staging.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RNStarter/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ECA0072C2D48F89C00990AFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ECA0072E2D49061D00990AFD /* RNStarter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNStarter-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F928087F6EDFB7915C739F94 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = RNStarter/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +74,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				F928087F6EDFB7915C739F94 /* PrivacyInfo.xcprivacy */,
 				ECA0072C2D48F89C00990AFD /* AppDelegate.swift */,
+				ECA0072E2D49061D00990AFD /* RNStarter-Bridging-Header.h */,
 			);
 			name = RNStarter;
 			sourceTree = "<group>";
