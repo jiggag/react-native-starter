@@ -1570,7 +1570,7 @@ PODS:
     - RNNotifee/NotifeeCore (= 7.9.0)
   - RNNotifee/NotifeeCore (7.9.0):
     - React-Core
-  - RNScreens (3.35.0):
+  - RNScreens (4.5.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1591,9 +1591,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNScreens/common (= 3.35.0)
+    - RNScreens/common (= 4.5.0)
     - Yoga
-  - RNScreens/common (3.35.0):
+  - RNScreens/common (4.5.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1904,7 +1904,7 @@ SPEC CHECKSUMS:
   ReactCodegen: c08a5113d9c9c895fe10f3c296f74c6b705a60a9
   ReactCommon: 1bd2dc684d7992acbf0dfee887b89a57a1ead86d
   RNNotifee: 271cfeb505183d2cd1b858c14c3968b6ca30a642
-  RNScreens: 62d443bebe8627b4efe82eb0c9c0642dab4a97fd
+  RNScreens: 5d61e452b51e7c23b3fcb9f16c4967d683a60a9d
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
   Yoga: c0d8564af14a858f962607cd7306539cb2ace926
 
