@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@notifee/react-native": "^9.1.8",
-    "@react-navigation/native": "^6.0.12",
+    "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^6.8.0",
     "react": "18.3.1",
     "react-native": "0.77.0",
