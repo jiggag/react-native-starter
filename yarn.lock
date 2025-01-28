@@ -1406,10 +1406,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@notifee/react-native@^7.8.2":
-  version "7.9.0"
-  resolved "https://registry.yarnpkg.com/@notifee/react-native/-/react-native-7.9.0.tgz#341bdb55345b2e02690f6161efb24d13291ad538"
-  integrity sha512-r4iFcAkvfFV/iNwGF50y9uAYS8x0x6+t9gmBsZczWxFHzBvg5nBjwFjshnuC24+oNnlNWIbB03heNmFjrFArJQ==
+"@notifee/react-native@^9.1.8":
+  version "9.1.8"
+  resolved "https://registry.yarnpkg.com/@notifee/react-native/-/react-native-9.1.8.tgz#3d55cb3fbcc21f9e35931e366afdf64b294da891"
+  integrity sha512-Az/dueoPerJsbbjRxu8a558wKY+gONUrfoy3Hs++5OqbeMsR0dYe6P+4oN6twrLFyzAhEA1tEoZRvQTFDRmvQg==
 
 "@react-native-community/cli-clean@15.0.1":
   version "15.0.1"

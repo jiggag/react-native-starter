@@ -14,7 +14,7 @@
     "pod-update": "cd ios && RCT_NEW_ARCH_ENABLED=1 pod update && cd .."
   },
   "dependencies": {
-    "@notifee/react-native": "^7.8.2",
+    "@notifee/react-native": "^9.1.8",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/native-stack": "^6.8.0",
     "react": "18.3.1",
